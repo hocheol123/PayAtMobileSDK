@@ -12,10 +12,10 @@
 #define  URL_SCHEMES_NAME @"PayatIOSSDKTest"
 
 //발급받은 CLIENT_SECRET 값입니다.
-#define  CLIENT_SECRET @""
+#define  CLIENT_SECRET @"7adb3bdb22db89f220549925e27e53853c5f20dc8976a06d4513016718b9da96"
 
 //발급받은 CLIENT_ID 값입니다.
-#define  CLIENT_ID @""
+#define  CLIENT_ID @"aegisep"
 
 @implementation PayatSDkManager
 
