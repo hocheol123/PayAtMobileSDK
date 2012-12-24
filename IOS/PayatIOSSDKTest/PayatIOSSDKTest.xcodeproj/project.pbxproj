@@ -1,0 +1,314 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		75615C9F168067CD00219BA1 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 75615C9E168067CD00219BA1 /* UIKit.framework */; };
+		75615CA1168067CD00219BA1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 75615CA0168067CD00219BA1 /* Foundation.framework */; };
+		75615CA3168067CD00219BA1 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 75615CA2168067CD00219BA1 /* CoreGraphics.framework */; };
+		75615CA9168067CD00219BA1 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 75615CA7168067CD00219BA1 /* InfoPlist.strings */; };
+		75615CAB168067CE00219BA1 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 75615CAA168067CE00219BA1 /* main.m */; };
+		75615CAF168067CE00219BA1 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 75615CAE168067CE00219BA1 /* AppDelegate.m */; };
+		75615CB1168067CE00219BA1 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 75615CB0168067CE00219BA1 /* Default.png */; };
+		75615CB3168067CE00219BA1 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 75615CB2168067CE00219BA1 /* Default@2x.png */; };
+		75615CB5168067CE00219BA1 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 75615CB4168067CE00219BA1 /* Default-568h@2x.png */; };
+		75615CB8168067CE00219BA1 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 75615CB7168067CE00219BA1 /* ViewController.m */; };
+		75615CBB168067CE00219BA1 /* ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 75615CB9168067CE00219BA1 /* ViewController.xib */; };
+		75615CC416806C4F00219BA1 /* PayatSDkManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 75615CC316806C4F00219BA1 /* PayatSDkManager.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		75615C9A168067CD00219BA1 /* PayatIOSSDKTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PayatIOSSDKTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		75615C9E168067CD00219BA1 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		75615CA0168067CD00219BA1 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		75615CA2168067CD00219BA1 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		75615CA6168067CD00219BA1 /* PayatIOSSDKTest-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "PayatIOSSDKTest-Info.plist"; sourceTree = "<group>"; };
+		75615CA8168067CD00219BA1 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		75615CAA168067CE00219BA1 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		75615CAC168067CE00219BA1 /* PayatIOSSDKTest-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "PayatIOSSDKTest-Prefix.pch"; sourceTree = "<group>"; };
+		75615CAD168067CE00219BA1 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		75615CAE168067CE00219BA1 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		75615CB0168067CE00219BA1 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
+		75615CB2168067CE00219BA1 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
+		75615CB4168067CE00219BA1 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		75615CB6168067CE00219BA1 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		75615CB7168067CE00219BA1 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		75615CBA168067CE00219BA1 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ViewController.xib; sourceTree = "<group>"; };
+		75615CC216806C4F00219BA1 /* PayatSDkManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PayatSDkManager.h; path = PayatSDKManager/PayatSDkManager.h; sourceTree = "<group>"; };
+		75615CC316806C4F00219BA1 /* PayatSDkManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PayatSDkManager.m; path = PayatSDKManager/PayatSDkManager.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		75615C97168067CD00219BA1 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				75615C9F168067CD00219BA1 /* UIKit.framework in Frameworks */,
+				75615CA1168067CD00219BA1 /* Foundation.framework in Frameworks */,
+				75615CA3168067CD00219BA1 /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		75615C8F168067CD00219BA1 = {
+			isa = PBXGroup;
+			children = (
+				75615CA4168067CD00219BA1 /* PayatIOSSDKTest */,
+				75615C9D168067CD00219BA1 /* Frameworks */,
+				75615C9B168067CD00219BA1 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		75615C9B168067CD00219BA1 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				75615C9A168067CD00219BA1 /* PayatIOSSDKTest.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		75615C9D168067CD00219BA1 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				75615C9E168067CD00219BA1 /* UIKit.framework */,
+				75615CA0168067CD00219BA1 /* Foundation.framework */,
+				75615CA2168067CD00219BA1 /* CoreGraphics.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		75615CA4168067CD00219BA1 /* PayatIOSSDKTest */ = {
+			isa = PBXGroup;
+			children = (
+				75615CC116806C1800219BA1 /* PayatSDKManager */,
+				75615CAD168067CE00219BA1 /* AppDelegate.h */,
+				75615CAE168067CE00219BA1 /* AppDelegate.m */,
+				75615CB6168067CE00219BA1 /* ViewController.h */,
+				75615CB7168067CE00219BA1 /* ViewController.m */,
+				75615CB9168067CE00219BA1 /* ViewController.xib */,
+				75615CA5168067CD00219BA1 /* Supporting Files */,
+			);
+			path = PayatIOSSDKTest;
+			sourceTree = "<group>";
+		};
+		75615CA5168067CD00219BA1 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				75615CA6168067CD00219BA1 /* PayatIOSSDKTest-Info.plist */,
+				75615CA7168067CD00219BA1 /* InfoPlist.strings */,
+				75615CAA168067CE00219BA1 /* main.m */,
+				75615CAC168067CE00219BA1 /* PayatIOSSDKTest-Prefix.pch */,
+				75615CB0168067CE00219BA1 /* Default.png */,
+				75615CB2168067CE00219BA1 /* Default@2x.png */,
+				75615CB4168067CE00219BA1 /* Default-568h@2x.png */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		75615CC116806C1800219BA1 /* PayatSDKManager */ = {
+			isa = PBXGroup;
+			children = (
+				75615CC216806C4F00219BA1 /* PayatSDkManager.h */,
+				75615CC316806C4F00219BA1 /* PayatSDkManager.m */,
+			);
+			name = PayatSDKManager;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		75615C99168067CD00219BA1 /* PayatIOSSDKTest */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 75615CBE168067CE00219BA1 /* Build configuration list for PBXNativeTarget "PayatIOSSDKTest" */;
+			buildPhases = (
+				75615C96168067CD00219BA1 /* Sources */,
+				75615C97168067CD00219BA1 /* Frameworks */,
+				75615C98168067CD00219BA1 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = PayatIOSSDKTest;
+			productName = PayatIOSSDKTest;
+			productReference = 75615C9A168067CD00219BA1 /* PayatIOSSDKTest.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		75615C91168067CD00219BA1 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0450;
+				ORGANIZATIONNAME = whooper;
+			};
+			buildConfigurationList = 75615C94168067CD00219BA1 /* Build configuration list for PBXProject "PayatIOSSDKTest" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 75615C8F168067CD00219BA1;
+			productRefGroup = 75615C9B168067CD00219BA1 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				75615C99168067CD00219BA1 /* PayatIOSSDKTest */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		75615C98168067CD00219BA1 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				75615CA9168067CD00219BA1 /* InfoPlist.strings in Resources */,
+				75615CB1168067CE00219BA1 /* Default.png in Resources */,
+				75615CB3168067CE00219BA1 /* Default@2x.png in Resources */,
+				75615CB5168067CE00219BA1 /* Default-568h@2x.png in Resources */,
+				75615CBB168067CE00219BA1 /* ViewController.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		75615C96168067CD00219BA1 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				75615CAB168067CE00219BA1 /* main.m in Sources */,
+				75615CAF168067CE00219BA1 /* AppDelegate.m in Sources */,
+				75615CB8168067CE00219BA1 /* ViewController.m in Sources */,
+				75615CC416806C4F00219BA1 /* PayatSDkManager.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		75615CA7168067CD00219BA1 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				75615CA8168067CD00219BA1 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		75615CB9168067CE00219BA1 /* ViewController.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				75615CBA168067CE00219BA1 /* en */,
+			);
+			name = ViewController.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		75615CBC168067CE00219BA1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		75615CBD168067CE00219BA1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		75615CBF168067CE00219BA1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "PayatIOSSDKTest/PayatIOSSDKTest-Prefix.pch";
+				INFOPLIST_FILE = "PayatIOSSDKTest/PayatIOSSDKTest-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		75615CC0168067CE00219BA1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "PayatIOSSDKTest/PayatIOSSDKTest-Prefix.pch";
+				INFOPLIST_FILE = "PayatIOSSDKTest/PayatIOSSDKTest-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		75615C94168067CD00219BA1 /* Build configuration list for PBXProject "PayatIOSSDKTest" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				75615CBC168067CE00219BA1 /* Debug */,
+				75615CBD168067CE00219BA1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		75615CBE168067CE00219BA1 /* Build configuration list for PBXNativeTarget "PayatIOSSDKTest" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				75615CBF168067CE00219BA1 /* Debug */,
+				75615CC0168067CE00219BA1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 75615C91168067CD00219BA1 /* Project object */;
+}
