@@ -4,9 +4,9 @@
 
 필요항목 : 발급받은 클라이언트 아이디, 클라이언트 시크릿, 가맹점 아이디, 결제직원 아이디
 
-발급받은 클라이언트키와 시크릿키는 PayatSDkManager.m에 #define에 적어주시면 됩니다.
-사용을 위해 URL SCHEME등록이 필요합니다.
-URL SCHEME을 등록하지 않을시 retrun값이 제대로 넘어오지 않습니다.
+>>발급받은 클라이언트키와 시크릿키는 PayatSDkManager.m에 #define에 적어주시면 됩니다.
+>>사용을 위해 URL SCHEME등록이 필요합니다.
+>>URL SCHEME을 등록하지 않을시 retrun값이 제대로 넘어오지 않습니다.
 
 PayatSDkManager에있는 함수를 통해 페이앳을 이용해 결제가 가능합니다.
 
