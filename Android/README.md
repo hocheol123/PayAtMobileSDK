@@ -3,10 +3,10 @@
 --------------------------------------------------------------------
 
 필요항목 : 발급받은 클라이언트 아이디, 클라이언트 시크릿, 가맹점 아이디, 결제직원 아이디
->       private String client_id;  //발급받은 클라이언트 아이디
-      private String client_secret;  //발급받은 시크릿
-      private String store_screen_name;  //가맹점 아이디
-      private String employee_screen_name;  //결제직원 아이디
+>       String client_id;  //발급받은 클라이언트 아이디
+      String client_secret;  //발급받은 시크릿
+      String store_screen_name;  //가맹점 아이디
+      String employee_screen_name;  //결제직원 아이디
               
 
 직접결제 : 필요항목과 공급가액, 부가세, 봉사료
