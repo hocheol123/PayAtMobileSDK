@@ -15,45 +15,63 @@ URL SCHEME을 등록하지 않을시 retrun값이 제대로 넘어오지 않습�
 
 PayatSDkManager에있는 함수를 통해 페이앳을 이용해 결제가 가능합니다.
 
+--------------------------------------------------------------------
 페이앳 설치 확인하기 
 >+ (BOOL)canOpenPayat
+
 >  현재 사용하는 기기에 SDK 사용가능한 페이앳이 설치 되어있는지 여부를 판별합니다.
 
 페이앳 사용자정보 입력 
 >+(void)initPayatSDKStoreId:(NSString *)storeID andEmployee_ID:(NSString *)employeeID
+
 >  사용하는 가맹점계정과 직원의 계정을 입력합니다. 
 >( 가맹점 계정과 사용자계정이 동일할경우 둘 다 가맹점 계정을 입력하시면 됩니다.)
 
+--------------------------------------------------------------------
+
 직접결제
+
 PayatSDkManager에 있는 함수 호출시 필요항목과 공급가액, 부가세, 봉사료를 통해 페이앳을 불러옵니다.
 
 >현금결제 
+
 >+(BOOL)sendPaymentDataCash:(NSInteger)totalPrice andSubtotalPrice:(NSInteger)subprice andTax:(NSInteger)tax
 >현금 결제를 위한 정보를 이용해 페이앳을 실행합니다.( 필요인자 : 총액 소액 부가세 )
 
 >카드결제
+
 >+(BOOL)sendPaymentDataCard:(NSInteger)totalPrice andSubtotalPrice:(NSInteger)subprice andTax:(NSInteger)tax
 >카드 결제를 위한 정보를 이용해 페이앳을 실행합니다.( 필요인자 : 총액 소액 부가세 )
 
+--------------------------------------------------------------------
+
 상품결제
+
 PayatSDkManager에 있는 함수 호출시 필요항목과 상품조회 타입, 상품 번호나 코드, 각 상품의 개수를 통해 페이앳을 불러옵니다.
 상품결제시 상품정보의 Dictionary는 key값에 상품 번호 , object값에 상품의 갯수가 들어갑니다.
 ITEMP_TYPE에는 상품이 없을경우 ITEMP_TYPE_NONE , 코드로된 상품의경우 ITEMP_TYPE_CODE , 넘버로된 상품의경우 ITEMP_TYPE_NO를 입력하시면 됩니다.
 
 
 >현금결제 
+
 >+(BOOL)sendPaymentProductCash:(NSInteger)totalPrice andSubtotalPrice:(NSInteger)subprice andTax:(NSInteger)tax andItem_List:(NSMutableDictionary *)product andItemType:(ITEMP_TYPE)itemp_Type
 >상품목록이 있는 현금 결제를 위한 정보를 이용해 페이앳을 실행합니다.( 필요인자 : 총액 소액 부가세 아이템정보 추가할아이템타입 )
 
 >카드결제
+
 >+(BOOL)sendPaymentProductCard:(NSInteger)totalPrice andSubtotalPrice:(NSInteger)subprice andTax:(NSInteger)tax andItem_List:(NSMutableDictionary *)product  andItemType:(ITEMP_TYPE)itemp_Type
 >상품목록이 있는 현금 결제를 위한 정보를 이용해 페이앳을 실행합니다.( 필요인자 : 총액 소액 부가세 아이템정보 추가할아이템타입 )
 
 카드결제와 현금결제 모두 동일한 방법으로 진행합니다.
 
 페이앳에서 넘어온 리턴값 처리 하기 
+
+--------------------------------------------------------------------
+
 >+(NSDictionary*)translationDictionary:(NSURL*)url
+
 >페이앳에서 응답온 값을 Dictionary 형식으로 변환합니다.
+
 > Appdelegate.m 에 (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation
 > 으로 리턴 된 openURL:(NSURL *)url 을 인자값으로 입력 
 > code 200 의경우 결제 성공, 200을 제외한 값들은 에러코드로 처리하시면됩니다. 200을 제외한 코드의경우는 Dictionary 에 message를 통해 에러 이유를 알려줍니다.
