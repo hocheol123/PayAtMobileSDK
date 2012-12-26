@@ -74,7 +74,7 @@ ITEMP_TYPE에는 상품이 없을경우 ITEMP_TYPE_NONE , 코드로된 상품의
 
 >+(NSDictionary*)translationDictionary:(NSURL*)url
 
->페이앳에서 응답온 값을 Dictionary 형식으로 변환합니다.
+>페이앳에서 응답온 값을 Dictionary 형식으로 변환합니다.( 필요인자 : Payat에서 리턴된 url ) 
 
 > Appdelegate.m 에 (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation
 > 으로 리턴 된 openURL:(NSURL *)url 을 인자값으로 입력 
