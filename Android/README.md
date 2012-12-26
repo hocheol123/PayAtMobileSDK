@@ -15,12 +15,17 @@
 
 callCardPay()로 Intent를 리턴받아 startActivity()로 페이앳을 불러옵니다.
 
+현금결제시 callCashPay()를 사용합니다.
+
               
               
 상품결제 : 필요항목과 상품조회 타입, 상품 번호나 코드, 각 상품의 개수
 >     callCardPayItem(String client_id, String client_secret, String store_screen_name, String employee_screen_name, String search_type, String item_code, String item_count)
 
 callCardPayItem()로 Intent를 리턴 받아 startActivity()로 페이앳을 불러옵니다.
+
+현금결제시 callCashPayItem()를 사용합니다.
+
 
               
 결제를 진행 후 다시 돌아 왔을때,
