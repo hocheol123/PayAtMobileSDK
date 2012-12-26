@@ -36,11 +36,13 @@ PayatSDkManager에 있는 함수 호출시 필요항목과 공급가액, 부가�
 >현금결제 
 
 >+(BOOL)sendPaymentDataCash:(NSInteger)totalPrice andSubtotalPrice:(NSInteger)subprice andTax:(NSInteger)tax
+
 >현금 결제를 위한 정보를 이용해 페이앳을 실행합니다.( 필요인자 : 총액 소액 부가세 )
 
 >카드결제
 
 >+(BOOL)sendPaymentDataCard:(NSInteger)totalPrice andSubtotalPrice:(NSInteger)subprice andTax:(NSInteger)tax
+
 >카드 결제를 위한 정보를 이용해 페이앳을 실행합니다.( 필요인자 : 총액 소액 부가세 )
 
 --------------------------------------------------------------------
@@ -55,11 +57,13 @@ ITEMP_TYPE에는 상품이 없을경우 ITEMP_TYPE_NONE , 코드로된 상품의
 >현금결제 
 
 >+(BOOL)sendPaymentProductCash:(NSInteger)totalPrice andSubtotalPrice:(NSInteger)subprice andTax:(NSInteger)tax andItem_List:(NSMutableDictionary *)product andItemType:(ITEMP_TYPE)itemp_Type
+
 >상품목록이 있는 현금 결제를 위한 정보를 이용해 페이앳을 실행합니다.( 필요인자 : 총액 소액 부가세 아이템정보 추가할아이템타입 )
 
 >카드결제
 
 >+(BOOL)sendPaymentProductCard:(NSInteger)totalPrice andSubtotalPrice:(NSInteger)subprice andTax:(NSInteger)tax andItem_List:(NSMutableDictionary *)product  andItemType:(ITEMP_TYPE)itemp_Type
+
 >상품목록이 있는 현금 결제를 위한 정보를 이용해 페이앳을 실행합니다.( 필요인자 : 총액 소액 부가세 아이템정보 추가할아이템타입 )
 
 카드결제와 현금결제 모두 동일한 방법으로 진행합니다.
