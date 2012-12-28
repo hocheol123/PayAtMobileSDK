@@ -49,8 +49,8 @@
 현금결제
 
       setCashPayItem(String client_id, String client_secret, String store_screen_name, String employee_screen_name,
-      String amount, String tax, String fee, String comment,String search_type, String item_code, String item_count,
-      String additional_data, String customer_name, String customer_email, String customer_phone, String customer_mobile) 
+                String amount, String tax, String fee, String comment,String search_type, String item_code, String item_count,
+                String additional_data, String customer_name, String customer_email, String customer_phone, String customer_mobile) 
 
 
 >현금결제를 위한 정보를 이용해 Intent를 return 받아 startActivity()로 페이앳을 실행합니다.
@@ -61,8 +61,8 @@
 카드결제
 
       setCardPayItem(String client_id, String client_secret, String store_screen_name, String employee_screen_name,
-      String amount, String tax, String fee, String comment,String search_type, String item_code, String item_count,
-      String additional_data, String customer_name, String customer_email, String customer_phone, String customer_mobile) 
+                String amount, String tax, String fee, String comment,String search_type, String item_code, String item_count,
+                String additional_data, String customer_name, String customer_email, String customer_phone, String customer_mobile) 
 
 
 >카드결제를 위한 정보를 이용해 Intent를 return 받아 startActivity()로 페이앳을 실행합니다.
