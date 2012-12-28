@@ -86,27 +86,27 @@ PayatSDkManager에 있는 함수 호출시 필요항목과 상품조회 타입, 
   Appdelegate.m 에 (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation 으로 리턴 된 openURL:(NSURL *)url 을 인자값으로 입력 code 200 의경우 결제 성공, 200을 제외한 값들은 에러코드로 처리하시면됩니다. 200을 제외한 코드의경우는 Dictionary 에 message를 통해 에러 이유를 알려줍니다.
   
   결제 성공시 메시지
-
+  ---------------------------------------
     //현금 결제 성공 
-  code = 200;
+    code = 200;
   
-  data =     {
+    data =     {
   
     "net_id" = "AEGIS_VISAwhp_111111_20121227162233883058";
     
     "order_no" = 23445;
   
-  };
+     };
   
-  message = "";
+     message = "";
   
-  status = ok;
+    status = ok;
+  ---------------------------------------
+    //현금 영수증 성공
+  
+    code = 200;
 
-  //현금 영수증 성공
-  
-  code = 200;
-
-  data =     {
+    data =     {
     
     "approval_no" = "000000000";
   
@@ -114,40 +114,40 @@ PayatSDkManager에 있는 함수 호출시 필요항목과 상품조회 타입, 
     
     "order_no" = 23450;
   
-  };
+     };
   
-  message = ok;
+     message = ok;
   
-  status = ok;
+    status = ok;
   
+  ---------------------------------------
+    //카드결제 성공
   
-  //카드결제 성공
+    code = 200;
   
-  code = 200;
+    data =     {
   
-  data =     {
+    "approval_no" = 66191351;
   
-  "approval_no" = 66191351;
+    "card_name" = BC;
   
-  "card_name" = BC;
+    "card_type" = 0100;
   
-  "card_type" = 0100;
+    "net_id" = "AEGIS_VISAwhp_111111_20121227164522828134";
   
-  "net_id" = "AEGIS_VISAwhp_111111_20121227164522828134";
+    "order_no" = 23481;
   
-  "order_no" = 23481;
-  
-  "send_no" = 510084;
+    "send_no" = 510084;
 
-  };
-  message = "";
-  status = ok;
-  
+    };
+    message = "";
+    status = ok;
+  ---------------------------------------
   결제 실패 메시지
 
-   code = 400;
+     code = 400;
    
-  message = "에러 메시지";
+    message = "에러 메시지";
 
 ---------------------------------------
 API 문의
