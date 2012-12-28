@@ -11,6 +11,7 @@ URL SCHEME 등록이후에 PayatSDkManager.m 에 URL_SCHEMES_NAME에 등록한 U
 URL SCHEME을 등록하지 않을시 retrun값이 제대로 넘어오지 않습니다.
 
 PayatSDkManager에있는 함수를 통해 페이앳을 이용해 결제가 가능합니다.
+
 ---------------------------------------
 페이앳 설치 확인하기
 
@@ -28,6 +29,7 @@ PayatSDkManager에있는 함수를 통해 페이앳을 이용해 결제가 가�
 >>+(NSInteger)obtainTax :(NSInteger) numPrice
 
 >총금액에 대한 부가세를 구합니다. (10% 부과세 필요인자 : 총금액 )
+
 ---------------------------------------
 직접결제
 
