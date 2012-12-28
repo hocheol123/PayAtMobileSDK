@@ -3,7 +3,7 @@
 //  PayatIOSSDKTest
 //
 //  Created by whooper on 12. 12. 18..
-//  Copyright (c) 2012년 whooper. All rights reserved.
+//  Copyright (c) 2012년 whooper. All rights reserved./Users/whooper/PayatSDK/IOS/PayatIOSSDKTest/PayatIOSSDKTest.xcodeproj
 //
 /*
  발급받은 클라이언트키와 시크릿키는 PayatSDkManager.m에 #define에 적어주시면 됩니다.
@@ -56,8 +56,10 @@
     {
         subtotal = price;
     }
+      NSMutableDictionary *customer = [ PayatSDkManager createCustomerDictionary:_iptName.text andEmail:_iptEmail.text andPhone:_iptPhone.text andMobile:_iptMobile.text];
     //리턴값이 NO일경우 페이앳이 최신버전이아니거나 설치가 안되어있을수있습니다.
-    [PayatSDkManager sendPaymentDataCash:price andSubtotalPrice:subtotal andTax:tax];
+  
+    [PayatSDkManager sendPaymentDataCash:price  andTax:tax andComment:_iptCommnet.text andCustomerInfo:customer andAdditional_data:_iptAddInfo.text];
     
 }
 
@@ -69,8 +71,10 @@
     {
         subtotal = price;
     }
+      NSMutableDictionary *customer = [ PayatSDkManager createCustomerDictionary:_iptName.text andEmail:_iptEmail.text andPhone:_iptPhone.text andMobile:_iptMobile.text];
     //리턴값이 NO일경우 페이앳이 최신버전이아니거나 설치가 안되어있을수있습니다.
-    [PayatSDkManager sendPaymentDataCard:price andSubtotalPrice:subtotal andTax:tax];
+    
+    [PayatSDkManager sendPaymentDataCard:price  andTax:tax andComment:_iptCommnet.text andCustomerInfo:customer andAdditional_data:_iptAddInfo.text];
 }
 
 - (IBAction)btnActionProductCash:(id)sender {
@@ -87,8 +91,8 @@
         subtotal = price;
     }
     //리턴값이 NO일경우 페이앳이 최신버전이아니거나 설치가 안되어있을수있습니다.
-    
-    [PayatSDkManager sendPaymentProductCash:price andSubtotalPrice:subtotal andTax:tax andItem_List:product andItemType:item_type];
+       NSMutableDictionary *customer = [ PayatSDkManager createCustomerDictionary:_iptName.text andEmail:_iptEmail.text andPhone:_iptPhone.text andMobile:_iptMobile.text];
+    [PayatSDkManager sendPaymentProductCash:price andTax:tax andItem_List:product andItemType:item_type andComment:_iptCommnet.text andCustomerInfo:customer andAdditional_data:_iptAddInfo.text];
     
 }
 
@@ -107,9 +111,9 @@
     {
         subtotal = price;
     }
-    
+       NSMutableDictionary *customer = [ PayatSDkManager createCustomerDictionary:_iptName.text andEmail:_iptEmail.text andPhone:_iptPhone.text andMobile:_iptMobile.text];
     //리턴값이 NO일경우 페이앳이 최신버전이아니거나 설치가 안되어있을수있습니다.
-    [PayatSDkManager sendPaymentProductCard:price andSubtotalPrice:subtotal andTax:tax andItem_List:product andItemType:item_type];
+    [PayatSDkManager sendPaymentProductCard:price  andTax:tax andItem_List:product andItemType:item_type andComment:_iptCommnet.text andCustomerInfo:customer andAdditional_data:_iptAddInfo.text];
 }
 
 - (IBAction)btnActionTax:(id)sender {
@@ -123,6 +127,12 @@
 - (void)viewDidUnload {
     _iptTax = nil;
     _iptSubTotal = nil;
+    _iptCommnet = nil;
+    _iptName = nil;
+    _iptEmail = nil;
+    _iptPhone = nil;
+    _iptMobile = nil;
+    _iptAddInfo = nil;
     [super viewDidUnload];
 }
 @end
