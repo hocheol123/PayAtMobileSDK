@@ -15,20 +15,26 @@ PayatSDkManager에있는 함수를 통해 페이앳을 이용해 결제가 가�
 ---------------------------------------
 페이앳 설치 확인하기
 
-  (BOOL)canOpenPayat
+    (BOOL)canOpenPayat
 
 >현재 사용하는 기기에 SDK 사용가능한 페이앳이 설치 되어있는지 여부를 판별합니다.
 
 페이앳 사용자정보 입력
 
-  +(void)initPayatSDKStoreId:(NSString *)storeID andEmployee_ID:(NSString *)employeeID
+    +(void)initPayatSDKStoreId:(NSString *)storeID andEmployee_ID:(NSString *)employeeID
 
 >사용하는 가맹점계정과 직원의 계정을 입력합니다. ( 가맹점 계정과 사용자계정이 동일할경우 둘 다 가맹점 계정을 입력하시면 됩니다.)
 
 부가세 구하기
-  +(NSInteger)obtainTax :(NSInteger) numPrice
+    +(NSInteger)obtainTax :(NSInteger) numPrice
 
 >총금액에 대한 부가세를 구합니다. (10% 부과세 필요인자 : 총금액 )
+
+고객정보 Dictionary 만들기 
+    
+    +(NSMutableDictionary *) createCustomerDictionary:(NSString *)name andEmail:(NSString *)email andPhone:(NSString *)phone andMobile:(NSString *)mobile
+
+>고객정보를 Dictionary로만들어 얻어옵니다. (고객이름 고객이메일 고객전화 고객핸드폰) 
 
 ---------------------------------------
 직접결제
@@ -37,17 +43,17 @@ PayatSDkManager에 있는 함수 호출시 필요항목과 공급가액, 부가�
 
 현금결제
 
-  +(BOOL)sendPaymentDataCash:(NSInteger)totalPrice andSubtotalPrice:(NSInteger)subprice andTax:(NSInteger)tax
+    +(BOOL)sendPaymentDataCash:(NSInteger)totalPrice   andTax:(NSInteger)tax andComment:(NSString *)commnet andCustomerInfo:(NSDictionary *)customerInfo andAdditional_data:(NSString *)additional_data 
 
->현금 결제를 위한 정보를 이용해 페이앳을 실행합니다.( 필요인자 : 총액 소액 부가세 )
+>현금 결제를 위한 정보를 이용해 페이앳을 실행합니다.( 필요인자 :  총액  부가세 상품설명 고객정보 추가정보  )
 
 >페이앳 호출에 실패하면 NO를 리턴합니다. 성공시 YES 리턴
 
 카드결제
 
-  +(BOOL)sendPaymentDataCard:(NSInteger)totalPrice andSubtotalPrice:(NSInteger)subprice andTax:(NSInteger)tax
+    +(BOOL)sendPaymentDataCard:(NSInteger)totalPrice   andTax:(NSInteger)tax andComment:(NSString *)commnet andCustomerInfo:(NSDictionary *)customerInfo andAdditional_data:(NSString *)additional_data 
 
->카드 결제를 위한 정보를 이용해 페이앳을 실행합니다.( 필요인자 : 총액 소액 부가세 )
+>카드 결제를 위한 정보를 이용해 페이앳을 실행합니다.( 필요인자 : 총액 소액 부가세 상품설명 고객정보 추가정보)
 
 >페이앳 호출에 실패하면 NO를 리턴합니다. 성공시 YES 리턴
 
@@ -59,17 +65,19 @@ PayatSDkManager에 있는 함수 호출시 필요항목과 상품조회 타입, 
 
 현금결제
 
-  +(BOOL)sendPaymentProductCash:(NSInteger)totalPrice andSubtotalPrice:(NSInteger)subprice andTax:(NSInteger)tax andItem_List:(NSMutableDictionary *)product andItemType:(ITEMP_TYPE)itemp_Type
+    +(BOOL)sendPaymentProductCash:(NSInteger)totalPrice andTax:(NSInteger)tax andItem_List:(NSMutableDictionary *)product  andItemType:(ITEMP_TYPE)itemp_Type andComment:(NSString *)commnet andCustomerInfo:(NSDictionary *)customerInfo andAdditional_data:(NSString *)additional_data ;
 
->상품목록이 있는 현금 결제를 위한 정보를 이용해 페이앳을 실행합니다.( 필요인자 : 총액 소액 부가세 아이템정보 추가할아이템타입 )
+
+>상품목록이 있는 현금 결제를 위한 정보를 이용해 페이앳을 실행합니다.( 필요인자 : 총액 소액 부가세 아이템정보 추가할아이템타입 상품설명 고객정보 추가정보)
 
 >페이앳 호출에 실패하면 NO를 리턴합니다. 성공시 YES 리턴
 
 카드결제
 
-  +(BOOL)sendPaymentProductCard:(NSInteger)totalPrice andSubtotalPrice:(NSInteger)subprice andTax:(NSInteger)tax andItem_List:(NSMutableDictionary *)product andItemType:(ITEMP_TYPE)itemp_Type
+    +(BOOL)sendPaymentProductCard:(NSInteger)totalPrice  andTax:(NSInteger)tax andItem_List:(NSMutableDictionary *)product  andItemType:(ITEMP_TYPE)itemp_Type andComment:(NSString *)commnet andCustomerInfo:(NSDictionary *)customerInfo andAdditional_data:(NSString *)additional_data ;
 
->상품목록이 있는 현금 결제를 위한 정보를 이용해 페이앳을 실행합니다.( 필요인자 : 총액 소액 부가세 아이템정보 추가할아이템타입 )
+
+>상품목록이 있는 현금 결제를 위한 정보를 이용해 페이앳을 실행합니다.( 필요인자 : 총액 소액 부가세 아이템정보 추가할아이템타입 상품설명 고객정보 추가정보)
 
 >페이앳 호출에 실패하면 NO를 리턴합니다. 성공시 YES 리턴
 
@@ -79,7 +87,7 @@ PayatSDkManager에 있는 함수 호출시 필요항목과 상품조회 타입, 
 
 페이앳에서 넘어온 리턴값 처리 하기
 
-  +(NSDictionary*)translationDictionary:(NSURL*)url
+    +(NSDictionary*)translationDictionary:(NSURL*)url
 
 >페이앳에서 응답온 값을 Dictionary 형식으로 변환합니다.( 필요인자 : Payat에서 리턴된 url )
 
