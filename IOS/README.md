@@ -89,37 +89,65 @@ PayatSDkManager에 있는 함수 호출시 필요항목과 상품조회 타입, 
 
     //현금 결제 성공 
   code = 200;
-data =     {
+  
+  data =     {
+  
     "net_id" = "AEGIS_VISAwhp_111111_20121227162233883058";
+    
     "order_no" = 23445;
-};
-message = "";
-status = ok;
-    //현금 영수증 성공
-   code = 200;
-data =     {
-    "approval_no" = "000000000";
-    "net_id" = "AEGIS_VISAwhp_111111_20121227162717881454";
-    "order_no" = 23450;
-};
-message = ok;
-status = ok;
-  //카드결제 성공
+  
+  };
+  
+  message = "";
+  
+  status = ok;
+
+  //현금 영수증 성공
+  
   code = 200;
-data =     {
-    "approval_no" = 66191351;
-    "card_name" = BC;
-    "card_type" = 0100;
-    "net_id" = "AEGIS_VISAwhp_111111_20121227164522828134";
-    "order_no" = 23481;
-    "send_no" = 510084;
-};
-message = "";
-status = ok;
+
+  data =     {
+    
+    "approval_no" = "000000000";
+  
+    "net_id" = "AEGIS_VISAwhp_111111_20121227162717881454";
+    
+    "order_no" = 23450;
+  
+  };
+  
+  message = ok;
+  
+  status = ok;
+  
+  
+  //카드결제 성공
+  
+  code = 200;
+  
+  data =     {
+  
+  "approval_no" = 66191351;
+  
+  "card_name" = BC;
+  
+  "card_type" = 0100;
+  
+  "net_id" = "AEGIS_VISAwhp_111111_20121227164522828134";
+  
+  "order_no" = 23481;
+  
+  "send_no" = 510084;
+
+  };
+  message = "";
+  status = ok;
+  
   결제 실패 메시지
 
    code = 400;
-message = "에러 메시지";
+   
+  message = "에러 메시지";
 
 ---------------------------------------
 API 문의
