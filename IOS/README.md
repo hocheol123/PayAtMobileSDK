@@ -69,7 +69,8 @@ PayatSDkManager에 있는 함수 호출시 필요항목과 상품조회 타입, 
 현금결제
 
     +(BOOL)sendPaymentProductCash:(NSInteger)totalPrice andTax:(NSInteger)tax andItem_List:(NSMutableDictionary *)product
-    andItemType:(ITEMP_TYPE)itemp_Type andComment:(NSString *)commnet andCustomerInfo:(NSDictionary *)customerInfo andAdditional_data:(NSString *)additional_data ;
+    andItemType:(ITEMP_TYPE)itemp_Type andComment:(NSString *)commnet andCustomerInfo:(NSDictionary *)customerInfo 
+    andAdditional_data:(NSString *)additional_data ;
 
 
 >상품목록이 있는 현금 결제를 위한 정보를 이용해 페이앳을 실행합니다.( 필요인자 : 총액 소액 부가세 아이템정보 추가할아이템타입 상품설명 고객정보 추가정보)
@@ -79,7 +80,8 @@ PayatSDkManager에 있는 함수 호출시 필요항목과 상품조회 타입, 
 카드결제
 
     +(BOOL)sendPaymentProductCard:(NSInteger)totalPrice  andTax:(NSInteger)tax andItem_List:(NSMutableDictionary *)product
-    andItemType:(ITEMP_TYPE)itemp_Type andComment:(NSString *)commnet andCustomerInfo:(NSDictionary *)customerInfo andAdditional_data:(NSString *)additional_data ;
+    andItemType:(ITEMP_TYPE)itemp_Type andComment:(NSString *)commnet andCustomerInfo:(NSDictionary *)customerInfo 
+    andAdditional_data:(NSString *)additional_data ;
 
 
 >상품목록이 있는 현금 결제를 위한 정보를 이용해 페이앳을 실행합니다.( 필요인자 : 총액 소액 부가세 아이템정보 추가할아이템타입 상품설명 고객정보 추가정보)
