@@ -50,55 +50,44 @@
 
 - (IBAction)btnActionCash:(id)sender {
     NSInteger price= [_iptPayment.text intValue];
-    NSInteger subtotal= [_iptSubTotal.text intValue];
+
     NSInteger tax= [_iptTax.text intValue];
-    if ( subtotal ==0 && tax ==0)
-    {
-        subtotal = price;
-    }
+
       NSMutableDictionary *customer = [ PayatSDkManager createCustomerDictionary:_iptName.text andEmail:_iptEmail.text andPhone:_iptPhone.text andMobile:_iptMobile.text];
     //리턴값이 NO일경우 페이앳이 최신버전이아니거나 설치가 안되어있을수있습니다.
   
-    [PayatSDkManager sendPaymentDataCash:price  andTax:tax andComment:_iptCommnet.text andCustomerInfo:customer andAdditional_data:_iptAddInfo.text];
+    [PayatSDkManager sendPaymentDataCash:price andFee:[_iptFee.text intValue]  andTax:tax andComment:_iptCommnet.text andCustomerInfo:customer andAdditional_data:_iptAddInfo.text];
     
 }
 
 - (IBAction)btnActionCard:(id)sender {
     NSInteger price= [_iptPayment.text intValue];
-    NSInteger subtotal= [_iptSubTotal.text intValue];
+ 
     NSInteger tax= [_iptTax.text intValue];
-    if ( subtotal ==0 && tax ==0)
-    {
-        subtotal = price;
-    }
+  
       NSMutableDictionary *customer = [ PayatSDkManager createCustomerDictionary:_iptName.text andEmail:_iptEmail.text andPhone:_iptPhone.text andMobile:_iptMobile.text];
     //리턴값이 NO일경우 페이앳이 최신버전이아니거나 설치가 안되어있을수있습니다.
     
-    [PayatSDkManager sendPaymentDataCard:price  andTax:tax andComment:_iptCommnet.text andCustomerInfo:customer andAdditional_data:_iptAddInfo.text];
+    [PayatSDkManager sendPaymentDataCard:price andFee:[_iptFee.text intValue] andTax:tax andComment:_iptCommnet.text andCustomerInfo:customer andAdditional_data:_iptAddInfo.text];
 }
 
 - (IBAction)btnActionProductCash:(id)sender {
     NSInteger price= [_iptPayment.text intValue];
-    NSInteger subtotal= [_iptSubTotal.text intValue];
-    NSInteger tax= [_iptTax.text intValue];
+     NSInteger tax= [_iptTax.text intValue];
     ITEMP_TYPE item_type= ITEM_TYPE_NO;
     NSMutableDictionary *product = [[ NSMutableDictionary alloc] init] ;
     // 상품을 추가합니다. object <-- 갯수 forKey <-- 아이템넘버
     [product setObject:@"1" forKey:@"1947"];
     [product setObject:@"3" forKey:@"1956"];
-    if ( subtotal ==0 && tax ==0)
-    {
-        subtotal = price;
-    }
+   
     //리턴값이 NO일경우 페이앳이 최신버전이아니거나 설치가 안되어있을수있습니다.
        NSMutableDictionary *customer = [ PayatSDkManager createCustomerDictionary:_iptName.text andEmail:_iptEmail.text andPhone:_iptPhone.text andMobile:_iptMobile.text];
-    [PayatSDkManager sendPaymentProductCash:price andTax:tax andItem_List:product andItemType:item_type andComment:_iptCommnet.text andCustomerInfo:customer andAdditional_data:_iptAddInfo.text];
+    [PayatSDkManager sendPaymentProductCash:price andFee:[_iptFee.text intValue] andTax:tax andItem_List:product andItemType:item_type andComment:_iptCommnet.text andCustomerInfo:customer andAdditional_data:_iptAddInfo.text];
     
 }
 
 - (IBAction)btnActionProductCard:(id)sender {
     NSInteger price= [_iptPayment.text intValue];
-    NSInteger subtotal= [_iptSubTotal.text intValue];
     NSInteger tax= [_iptTax.text intValue];
     ITEMP_TYPE item_type= ITEM_TYPE_NO;
     NSMutableDictionary *product = [[ NSMutableDictionary alloc] init] ;
@@ -106,27 +95,21 @@
     [product setObject:@"2" forKey:@"1947"];
     [product setObject:@"2" forKey:@"1956"];
     
-    
-    if ( subtotal ==0 && tax ==0)
-    {
-        subtotal = price;
-    }
-       NSMutableDictionary *customer = [ PayatSDkManager createCustomerDictionary:_iptName.text andEmail:_iptEmail.text andPhone:_iptPhone.text andMobile:_iptMobile.text];
+        NSMutableDictionary *customer = [ PayatSDkManager createCustomerDictionary:_iptName.text andEmail:_iptEmail.text andPhone:_iptPhone.text andMobile:_iptMobile.text];
     //리턴값이 NO일경우 페이앳이 최신버전이아니거나 설치가 안되어있을수있습니다.
-    [PayatSDkManager sendPaymentProductCard:price  andTax:tax andItem_List:product andItemType:item_type andComment:_iptCommnet.text andCustomerInfo:customer andAdditional_data:_iptAddInfo.text];
+    [PayatSDkManager sendPaymentProductCard:price andFee:[_iptFee.text intValue] andTax:tax andItem_List:product andItemType:item_type andComment:_iptCommnet.text andCustomerInfo:customer andAdditional_data:_iptAddInfo.text];
 }
 
 - (IBAction)btnActionTax:(id)sender {
     NSInteger price= [_iptPayment.text intValue];
     NSInteger tax= [PayatSDkManager obtainTax:price];
-    NSInteger subtotal = price -tax;
     [_iptTax setText:[NSString stringWithFormat:@"%d",tax]];
-    [_iptSubTotal setText:[NSString stringWithFormat:@"%d",subtotal]];
+  
     
 }
 - (void)viewDidUnload {
     _iptTax = nil;
-    _iptSubTotal = nil;
+
     _iptCommnet = nil;
     _iptName = nil;
     _iptEmail = nil;

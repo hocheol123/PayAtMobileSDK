@@ -71,36 +71,36 @@ static NSString *_employee_screen_name = nil;
 }
 
 
-// 현금 결제를 위한 필요 정보를 입력합니다.( 총액  부가세 코멘트 고객정보 추가정보)
-+(BOOL)sendPaymentDataCash:(NSInteger)totalPrice  andTax:(NSInteger)tax andComment:(NSString *)commnet andCustomerInfo:(NSDictionary *)customerInfo
+// 현금 결제를 위한 필요 정보를 입력합니다.( 총액 봉사료 부가세 코멘트 고객정보 추가정보)
++(BOOL)sendPaymentDataCash:(NSInteger)totalPrice andFee:(NSInteger)fee andTax:(NSInteger)tax andComment:(NSString *)commnet andCustomerInfo:(NSDictionary *)customerInfo
 andAdditional_data:(NSString *)additional_data {
-    return  [self sendPaymentData:totalPrice andTax:tax isCash:YES andItemListDic:nil andItemType:ITEM_TYPE_NONE andComment:commnet andCustomerInfo:customerInfo andAdditional_data:additional_data];
+    return  [self sendPaymentData:totalPrice andFee:fee andTax:tax isCash:YES andItemListDic:nil andItemType:ITEM_TYPE_NONE andComment:commnet andCustomerInfo:customerInfo andAdditional_data:additional_data];
     
 }
 
-// 카드 결제를 위한 필요 정보를 입력합니다.( 총액  부가세  코멘트 고객정보 추가정보)
-+(BOOL)sendPaymentDataCard:(NSInteger)totalPrice andTax:(NSInteger)tax andComment:(NSString *)commnet andCustomerInfo:(NSDictionary *)customerInfo
+// 카드 결제를 위한 필요 정보를 입력합니다.( 총액 봉사료 부가세  코멘트 고객정보 추가정보)
++(BOOL)sendPaymentDataCard:(NSInteger)totalPrice  andFee:(NSInteger)fee andTax:(NSInteger)tax andComment:(NSString *)commnet andCustomerInfo:(NSDictionary *)customerInfo
 andAdditional_data:(NSString *)additional_data 
 {
     
-    return  [self sendPaymentData:totalPrice  andTax:tax isCash:NO andItemListDic:nil andItemType:ITEM_TYPE_NONE andComment:commnet andCustomerInfo:customerInfo andAdditional_data:additional_data ];
+    return  [self sendPaymentData:totalPrice andFee:fee andTax:tax isCash:NO andItemListDic:nil andItemType:ITEM_TYPE_NONE andComment:commnet andCustomerInfo:customerInfo andAdditional_data:additional_data ];
     
 }
 
-// 상품목록이 있는 현금 결제를 위한 필요 정보를 입력합니다.( 총액  부가세 아이템정보 추가할아이템타입  코멘트 고객정보 추가정보)
-+(BOOL)sendPaymentProductCash:(NSInteger)totalPrice andTax:(NSInteger)tax andItem_List:(NSMutableDictionary *)product andItemType:(ITEMP_TYPE)itemp_Type andComment:(NSString *)commnet andCustomerInfo:(NSDictionary *)customerInfo andAdditional_data:(NSString *)additional_data 
+// 상품목록이 있는 현금 결제를 위한 필요 정보를 입력합니다.( 총액 봉사료 부가세 아이템정보 추가할아이템타입  코멘트 고객정보 추가정보)
++(BOOL)sendPaymentProductCash:(NSInteger)totalPrice andFee:(NSInteger)fee andTax:(NSInteger)tax andItem_List:(NSMutableDictionary *)product andItemType:(ITEMP_TYPE)itemp_Type andComment:(NSString *)commnet andCustomerInfo:(NSDictionary *)customerInfo andAdditional_data:(NSString *)additional_data 
 
 {
-    return  [self sendPaymentData:totalPrice  andTax:tax isCash:YES andItemListDic:product andItemType:itemp_Type andComment:commnet andCustomerInfo:customerInfo andAdditional_data:additional_data];
+    return  [self sendPaymentData:totalPrice andFee:fee andTax:tax isCash:YES andItemListDic:product andItemType:itemp_Type andComment:commnet andCustomerInfo:customerInfo andAdditional_data:additional_data];
 }
-// 상품목록이 있는 카드 결제를 위한 필요 정보를 입력합니다. ( 총액  부가세 아이템정보 추가할아이템타입 코멘트 고객정보 추가정보 )
-+(BOOL)sendPaymentProductCard:(NSInteger)totalPrice  andTax:(NSInteger)tax andItem_List:(NSMutableDictionary *)product  andItemType:(ITEMP_TYPE)itemp_Type andComment:(NSString *)commnet andCustomerInfo:(NSDictionary *)customerInfo andAdditional_data:(NSString *)additional_data 
+// 상품목록이 있는 카드 결제를 위한 필요 정보를 입력합니다. ( 총액 봉사료 부가세 아이템정보 추가할아이템타입 코멘트 고객정보 추가정보 )
++(BOOL)sendPaymentProductCard:(NSInteger)totalPrice  andFee:(NSInteger)fee andTax:(NSInteger)tax andItem_List:(NSMutableDictionary *)product  andItemType:(ITEMP_TYPE)itemp_Type andComment:(NSString *)commnet andCustomerInfo:(NSDictionary *)customerInfo andAdditional_data:(NSString *)additional_data 
 
 {
-    return  [self sendPaymentData:totalPrice andTax:tax isCash:NO andItemListDic:product andItemType:itemp_Type andComment:commnet andCustomerInfo:customerInfo andAdditional_data:additional_data];
+    return  [self sendPaymentData:totalPrice andFee:fee andTax:tax isCash:NO andItemListDic:product andItemType:itemp_Type andComment:commnet andCustomerInfo:customerInfo andAdditional_data:additional_data];
 }
-// 직접 보낼 데이터를 모두 입력합니다 ( 총액   부가세  결제타입  아이템정보  추가할아이템타입 코멘트 고객정보 추가정보 )
-+(BOOL) sendPaymentData:(NSInteger)totalPrice andTax:(NSInteger)tax isCash:(BOOL)iscash andItemListDic:(NSMutableDictionary *)product andItemType:(ITEMP_TYPE)itemp_Type andComment:(NSString *)commnet andCustomerInfo:(NSDictionary *)customerInfo andAdditional_data:(NSString *)additional_data {
+// 직접 보낼 데이터를 모두 입력합니다 ( 총액 봉사료  부가세  결제타입  아이템정보  추가할아이템타입 코멘트 고객정보 추가정보 )
++(BOOL) sendPaymentData:(NSInteger)totalPrice andFee:(NSInteger)fee andTax:(NSInteger)tax isCash:(BOOL)iscash andItemListDic:(NSMutableDictionary *)product andItemType:(ITEMP_TYPE)itemp_Type andComment:(NSString *)commnet andCustomerInfo:(NSDictionary *)customerInfo andAdditional_data:(NSString *)additional_data {
     NSArray* item_nos = [[NSArray alloc] init] ;
     if ( product != nil)
     {
@@ -125,6 +125,8 @@ andAdditional_data:(NSString *)additional_data
     [sendParams setObject:additional_data forKey:@"additional_data"];
     else
         [sendParams setObject:@"" forKey:@"additional_data"];
+   
+    [sendParams setObject:[NSString stringWithFormat:@"%d",fee] forKey:@"fee"];
 
     [sendParams setObject:CLIENT_ID forKey:@"client_id"];
     [sendParams setObject:CLIENT_SECRET forKey:@"client_secret"];

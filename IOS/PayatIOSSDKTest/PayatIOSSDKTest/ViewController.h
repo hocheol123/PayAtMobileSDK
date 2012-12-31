@@ -12,6 +12,8 @@
 
 {
     
+    // 봉사료 
+    IBOutlet UITextField *_iptFee;
     //총금액 입력
     IBOutlet UITextField *_iptPayment;
     // 카드 결제 버튼
@@ -24,8 +26,7 @@
     IBOutlet UIButton *_btnProductCard;
     // 부가세 입력란
     IBOutlet UITextField *_iptTax;
-    // 소액 입력란
-    IBOutlet UITextField *_iptSubTotal;
+ 
     // 상품 설명입력란
     IBOutlet UITextField *_iptCommnet;
     

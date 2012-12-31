@@ -21,24 +21,24 @@ typedef enum
 //페이앳 설치 상태를 확인합니다. YES일경우만 SDK 사용가능한 페이앳이 설치된 상태입니다.
 + (BOOL)canOpenPayat;
 
-// 상품목록이 있는 카드 결제를 위한 필요 정보를 입력합니다. ( 총액  부가세 아이템정보 추가할아이템타입 )
-+(BOOL)sendPaymentProductCard:(NSInteger)totalPrice  andTax:(NSInteger)tax andItem_List:(NSMutableDictionary *)product  andItemType:(ITEMP_TYPE)itemp_Type andComment:(NSString *)commnet andCustomerInfo:(NSDictionary *)customerInfo andAdditional_data:(NSString *)additional_data ;
+// 상품목록이 있는 카드 결제를 위한 필요 정보를 입력합니다. ( 총액 봉사료 부가세 아이템정보 추가할아이템타입 상품설명 고객정보 추가정보)
++(BOOL)sendPaymentProductCard:(NSInteger)totalPrice andFee:(NSInteger)fee andTax:(NSInteger)tax andItem_List:(NSMutableDictionary *)product  andItemType:(ITEMP_TYPE)itemp_Type andComment:(NSString *)commnet andCustomerInfo:(NSDictionary *)customerInfo andAdditional_data:(NSString *)additional_data ;
 
-// 상품목록이 있는 현금 결제를 위한 필요 정보를 입력합니다.( 총액  부가세 아이템정보 추가할아이템타입 )
-+(BOOL)sendPaymentProductCash:(NSInteger)totalPrice andTax:(NSInteger)tax andItem_List:(NSMutableDictionary *)product  andItemType:(ITEMP_TYPE)itemp_Type andComment:(NSString *)commnet andCustomerInfo:(NSDictionary *)customerInfo andAdditional_data:(NSString *)additional_data ;
+// 상품목록이 있는 현금 결제를 위한 필요 정보를 입력합니다.( 총액 봉사료 부가세 아이템정보 추가할아이템타입 상품설명 고객정보 추가정보)
++(BOOL)sendPaymentProductCash:(NSInteger)totalPrice andFee:(NSInteger)fee andTax:(NSInteger)tax andItem_List:(NSMutableDictionary *)product  andItemType:(ITEMP_TYPE)itemp_Type andComment:(NSString *)commnet andCustomerInfo:(NSDictionary *)customerInfo andAdditional_data:(NSString *)additional_data ;
 
-// 현금 결제를 위한 필요 정보를 입력합니다.( 총액  부가세 ) 
-+(BOOL)sendPaymentDataCash:(NSInteger)totalPrice   andTax:(NSInteger)tax andComment:(NSString *)commnet andCustomerInfo:(NSDictionary *)customerInfo andAdditional_data:(NSString *)additional_data ;
+// 현금 결제를 위한 필요 정보를 입력합니다.( 총액 봉사료 부가세 상품설명 고객정보 추가정보) 
++(BOOL)sendPaymentDataCash:(NSInteger)totalPrice  andFee:(NSInteger)fee andTax:(NSInteger)tax andComment:(NSString *)commnet andCustomerInfo:(NSDictionary *)customerInfo andAdditional_data:(NSString *)additional_data ;
 
-// 카드 결제를 위한 필요 정보를 입력합니다.( 총액  부가세  )
-+(BOOL)sendPaymentDataCard:(NSInteger)totalPrice   andTax:(NSInteger)tax andComment:(NSString *)commnet andCustomerInfo:(NSDictionary *)customerInfo andAdditional_data:(NSString *)additional_data ;
+// 카드 결제를 위한 필요 정보를 입력합니다.( 총액 봉사료 부가세  상품설명 고객정보 추가정보)
++(BOOL)sendPaymentDataCard:(NSInteger)totalPrice  andFee:(NSInteger)fee andTax:(NSInteger)tax andComment:(NSString *)commnet andCustomerInfo:(NSDictionary *)customerInfo andAdditional_data:(NSString *)additional_data ;
 
 //페이앳에서 응답온 값을 Dictionary 형식으로 변환합니다.
 //( Appdelegate -> (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation 으로 리턴 된 URL값 입력 )
 +(NSDictionary*)translationDictionary:(NSURL*)url;
 
-// 직접 보낼 데이터를 모두 입력합니다 ( 총액  소액  부가세  결제타입  아이템정보  추가할아이템타입 )
-+(BOOL) sendPaymentData:(NSInteger)totalPrice andTax:(NSInteger)tax isCash:(BOOL)iscash andItemListDic:(NSMutableDictionary *)product andItemType:(ITEMP_TYPE)itemp_Type andComment:(NSString *)commnet andCustomerInfo:(NSDictionary *)customerInfo andAdditional_data:(NSString *)additional_data ;
+// 직접 보낼 데이터를 모두 입력합니다 ( 총액  소액 봉사료 부가세  결제타입  아이템정보  추가할아이템타입 상품설명 고객정보 추가정보)
++(BOOL) sendPaymentData:(NSInteger)totalPrice andFee:(NSInteger)fee andTax:(NSInteger)tax isCash:(BOOL)iscash andItemListDic:(NSMutableDictionary *)product andItemType:(ITEMP_TYPE)itemp_Type andComment:(NSString *)commnet andCustomerInfo:(NSDictionary *)customerInfo andAdditional_data:(NSString *)additional_data ;
 //상품 총가격의 10%부가세를 구합니다.( 총액 )
 +(NSInteger)obtainTax :(NSInteger) numPrice;
 
