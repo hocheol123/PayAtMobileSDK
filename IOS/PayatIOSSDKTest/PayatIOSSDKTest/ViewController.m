@@ -28,8 +28,8 @@
     
     //가맹점아이디와 직원아이디를 등록합니다.
     [PayatSDkManager initPayatSDKStoreId:@"111111" andEmployee_ID:@"111111"];
-    BOOL isOpne =   [PayatSDkManager canOpenPayat];
-    if ( isOpne )
+    BOOL isOpen =   [PayatSDkManager canOpenPayat];
+    if ( isOpen )
     {
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"응답" message:@"페이엣 SDK 사용이 가능합니다." delegate:nil cancelButtonTitle:@"취소" otherButtonTitles:nil];
         [alert show];
