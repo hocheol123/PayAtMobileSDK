@@ -157,7 +157,7 @@ BroadcastReceiver를 이용하여 결제 결과를 받습니다.
     message = "";
     net_id = AEGIS_VISAwhp_111111_20121227162233883058;    
     order_no = 23445;
-    store  = {  //가맹점 정보
+    store  = {  //가맹점 정보 (Map)
 	            "phone":"02-1234-1234",
 	            "address":"서울 금천구 가산동 IT캐슬 2동 714호",
 	            "bsn":"1111111111",
@@ -166,7 +166,7 @@ BroadcastReceiver를 이용하여 결제 결과를 받습니다.
 	            "zipcode":"153768",
 	            "ceo_name":"페이앳"
 	};
-	employee = { //결제한 직원 아이디 정보
+	employee = { //결제한 직원 아이디 정보 (Map)
 	            "name":"슈파이더맨",
 	            "email":"support@whoopersoft.com",
 	            "mobile":"02-1234-1234",
@@ -183,7 +183,7 @@ BroadcastReceiver를 이용하여 결제 결과를 받습니다.
     net_id = AEGIS_VISAwhp_111111_20121227162233883058;    
     order_no = 23445;
     approval_no = 000000000;
-    store  = {  //가맹점 정보
+    store  = {  //가맹점 정보 (Map)
 	            "phone":"02-1234-1234",
 	            "address":"서울 금천구 가산동 IT캐슬 2동 714호",
 	            "bsn":"1111111111",
@@ -192,7 +192,7 @@ BroadcastReceiver를 이용하여 결제 결과를 받습니다.
 	            "zipcode":"153768",
 	            "ceo_name":"페이앳"
 	};
-	employee = { //결제한 직원 아이디 정보
+	employee = { //결제한 직원 아이디 정보 (Map)
 	            "name":"슈파이더맨",
 	            "email":"support@whoopersoft.com",
 	            "mobile":"02-1234-1234",
@@ -205,7 +205,7 @@ BroadcastReceiver를 이용하여 결제 결과를 받습니다.
   ---------------------------------------
     //카드결제 성공
     
-    code = 200;  
+    code = 200;   
     message = "";
     net_id = AEGIS_VISAwhp_111111_20121227162233883058;    
     order_no = 23445;
@@ -213,7 +213,7 @@ BroadcastReceiver를 이용하여 결제 결과를 받습니다.
     card_name = BC;
     card_type = 0100;
     send_no = 510084;
-    store  = {  //가맹점 정보
+    store  = {  //가맹점 정보 (Map)
 	            "phone":"02-1234-1234",
 	            "address":"서울 금천구 가산동 IT캐슬 2동 714호",
 	            "bsn":"1111111111",
@@ -222,7 +222,7 @@ BroadcastReceiver를 이용하여 결제 결과를 받습니다.
 	            "zipcode":"153768",
 	            "ceo_name":"페이앳"
 	};
-	employee = { //결제한 직원 아이디 정보
+	employee = { //결제한 직원 아이디 정보 (Map)
 	            "name":"슈파이더맨",
 	            "email":"support@whoopersoft.com",
 	            "mobile":"02-1234-1234",
