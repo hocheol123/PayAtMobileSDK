@@ -34,6 +34,7 @@
     {
         //결제 방법에따라 넘어오는 Dictionary는 다를 수 있습니다.
         //결제 성공 메시지를 뿌려줍니다.
+        NSLog(@"Dic %@",dic);
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"응답" message:@"결제에 성공하였습니다." delegate:nil cancelButtonTitle:@"취소" otherButtonTitles:nil];
         [alert show];
     }
