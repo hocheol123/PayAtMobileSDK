@@ -112,10 +112,10 @@ public class MainActivity extends Activity implements OnClickListener{
         //								   상품조회 타입, 상품코드 또는 번호, 상품개수,
         //								   상점관리용 부가데이터 (4096바이트), 고객명, 고객 이메일, 고객 유선 전화번호, 고객 무선 전화번호)
     	Intent intent = payatService.setCardPayItem(client_id, client_secret, store_screen_name, employee_screen_name, 
-    			 														 amount, tax, fee, comment,
-    																	 search_type, item_code, item_count,
-    																	 additional_data, customer_name, customer_email, 
-    																	 customer_phone, customer_mobile, receipt_unissued);		
+    			 			amount, tax, fee, comment,
+    						search_type, item_code, item_count,
+    						additional_data, customer_name, customer_email, 
+    						customer_phone, customer_mobile, receipt_unissued);		
 		startActivity(intent);
     }
     
@@ -136,7 +136,7 @@ public class MainActivity extends Activity implements OnClickListener{
 		//현금결제시 인텐트 리턴 (클라이언트 아이디, 클라이언트 시크릿, 가맹점 아이디, 결제 직원 아이디, 공급가액, 부가세, 봉사료, 상품설명,
         //								   상점관리용 부가데이터 (4096바이트), 고객명, 고객 이메일, 고객 유선 전화번호, 고객 무선 전화번호)
     	Intent intent = payatService.setCardPay(client_id, client_secret, store_screen_name, employee_screen_name, amount, tax, fee, comment,
-    																additional_data, customer_name, customer_email, customer_phone, customer_mobile, receipt_unissued);	
+    						additional_data, customer_name, customer_email, customer_phone, customer_mobile, receipt_unissued);	
 		startActivity(intent);
     }
 
@@ -163,10 +163,10 @@ public class MainActivity extends Activity implements OnClickListener{
         //								   상품조회 타입, 상품코드 또는 번호, 상품개수,
         //								   상점관리용 부가데이터 (4096바이트), 고객명, 고객 이메일, 고객 유선 전화번호, 고객 무선 전화번호)
     	Intent intent = payatService.setCashPayItem(client_id, client_secret, store_screen_name, employee_screen_name, 
-    			 														 amount, tax, fee, comment,
-    																	 search_type, item_code, item_count,
-    																	 additional_data, customer_name, customer_email, 
-    																	 customer_phone, customer_mobile, receipt_unissued);		
+    			 			amount, tax, fee, comment,
+    						search_type, item_code, item_count,
+    						additional_data, customer_name, customer_email, 
+    						customer_phone, customer_mobile, receipt_unissued);		
 		startActivity(intent);
     }
     
@@ -187,7 +187,7 @@ public class MainActivity extends Activity implements OnClickListener{
 		//현금결제시 인텐트 리턴 (클라이언트 아이디, 클라이언트 시크릿, 가맹점 아이디, 결제 직원 아이디, 공급가액, 부가세, 봉사료, 상품설명,
         //								   상점관리용 부가데이터 (4096바이트), 고객명, 고객 이메일, 고객 유선 전화번호, 고객 무선 전화번호)
     	Intent intent = payatService.setCashPay(client_id, client_secret, store_screen_name, employee_screen_name, amount, tax, fee, comment,
-    															  additional_data, customer_name, customer_email, customer_phone, customer_mobile, receipt_unissued);	
+    						additional_data, customer_name, customer_email, customer_phone, customer_mobile, receipt_unissued);	
 		startActivity(intent);
     }
     
