@@ -8,9 +8,9 @@ import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 
 public class PayatService {
-	private String action = "com.whoopersoft.payat.PAYMENT";		//ÀÎÅÙÆ® ¾×¼Ç
+	private String action = "com.whoopersoft.payat.PAYMENT";		//ì¸í…íŠ¸ ì•¡ì…˜
 
-    public boolean checkIntentCallable(Context context) {		//ÆäÀÌ¾Ü È£Ãâ °¡´É ¿©ºÎ ¸®ÅÏ(true È£Ãâ °¡´É, false È£Ãâ ºÒ°¡)
+    public boolean checkIntentCallable(Context context) {		//í˜ì´ì•³ í˜¸ì¶œ ê°€ëŠ¥ ì—¬ë¶€ ë¦¬í„´(true í˜¸ì¶œ ê°€ëŠ¥, false í˜¸ì¶œ ë¶ˆê°€)
     	PackageManager packageManager = context.getPackageManager();    
     	Intent intent = new Intent(action);    
     	List<ResolveInfo> list = packageManager.queryIntentActivities(intent, PackageManager.MATCH_DEFAULT_ONLY);    
@@ -18,13 +18,14 @@ public class PayatService {
     	return (list.size() > 0);
     }        
     
-    //»óÇ°ÀÌ ¾øÀ»½Ã
-    //Ä«µå°áÁ¦½Ã ÀÎÅÙÆ® ¸®ÅÏ (Å¬¶óÀÌ¾ğÆ® ¾ÆÀÌµğ, Å¬¶óÀÌ¾ğÆ® ½ÃÅ©¸´, °¡¸ÍÁ¡ ¾ÆÀÌµğ, °áÁ¦ Á÷¿ø ¾ÆÀÌµğ, °ø±Ş°¡¾×, ºÎ°¡¼¼, ºÀ»ç·á, »óÇ°¼³¸í,
-    //								   »óÁ¡°ü¸®¿ë ºÎ°¡µ¥ÀÌÅÍ (4096¹ÙÀÌÆ®), °í°´¸í, °í°´ ÀÌ¸ŞÀÏ, °í°´ À¯¼± ÀüÈ­¹øÈ£, °í°´ ¹«¼± ÀüÈ­¹øÈ£)
+    //ìƒí’ˆì´ ì—†ì„ì‹œ
+    //ì¹´ë“œê²°ì œì‹œ ì¸í…íŠ¸ ë¦¬í„´ (í´ë¼ì´ì–¸íŠ¸ ì•„ì´ë””, í´ë¼ì´ì–¸íŠ¸ ì‹œí¬ë¦¿, ê°€ë§¹ì  ì•„ì´ë””, ê²°ì œ ì§ì› ì•„ì´ë””, ê³µê¸‰ê°€ì•¡, ë¶€ê°€ì„¸, ë´‰ì‚¬ë£Œ, ìƒí’ˆì„¤ëª…,
+    //								   ìƒì ê´€ë¦¬ìš© ë¶€ê°€ë°ì´í„° (4096ë°”ì´íŠ¸), ê³ ê°ëª…, ê³ ê° ì´ë©”ì¼, ê³ ê° ìœ ì„  ì „í™”ë²ˆí˜¸, ê³ ê° ë¬´ì„  ì „í™”ë²ˆí˜¸, ì˜ìˆ˜ì¦ ë°œí–‰ ì—¬ë¶€)
     public Intent setCardPay(String client_id, String client_secret, 
-    										String store_screen_name, String employee_screen_name,
-    										String amount, String tax, String fee, String comment,
-											String additional_data, String customer_name, String customer_email, String customer_phone, String customer_mobile) {
+    			     String store_screen_name, String employee_screen_name,
+    			     String amount, String tax, String fee, String comment,
+			     String additional_data, String customer_name, String customer_email, 
+			     String customer_phone, String customer_mobile, boolean receipt_unissued) {
     	Intent intent = new Intent(action);
 		intent.putExtra("type", "card");
 		intent.putExtra("client_id", client_id);
@@ -40,20 +41,22 @@ public class PayatService {
 		intent.putExtra("customer_email", customer_email);
 		intent.putExtra("customer_phone", customer_phone);
 		intent.putExtra("customer_mobile", customer_mobile);
+		intent.putExtra("receipt_unissued", receipt_unissued);
 		intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
 		
 		return intent;
     }
     
-    //»óÇ°ÀÌ ÀÖÀ»½Ã
-    //Ä«µå°áÁ¦½Ã ÀÎÅÙÆ® ¸®ÅÏ (Å¬¶óÀÌ¾ğÆ® ¾ÆÀÌµğ, Å¬¶óÀÌ¾ğÆ® ½ÃÅ©¸´, °¡¸ÍÁ¡ ¾ÆÀÌµğ, °áÁ¦ Á÷¿ø ¾ÆÀÌµğ, °ø±Ş°¡¾×, ºÎ°¡¼¼, ºÀ»ç·á, »óÇ°¼³¸í,
-    //								   »óÇ°Á¶È¸ Å¸ÀÔ, »óÇ°ÄÚµå ¶Ç´Â ¹øÈ£, »óÇ°°³¼ö,
-    //								   »óÁ¡°ü¸®¿ë ºÎ°¡µ¥ÀÌÅÍ (4096¹ÙÀÌÆ®), °í°´¸í, °í°´ ÀÌ¸ŞÀÏ, °í°´ À¯¼± ÀüÈ­¹øÈ£, °í°´ ¹«¼± ÀüÈ­¹øÈ£)
+    //ìƒí’ˆì´ ìˆì„ì‹œ
+    //ì¹´ë“œê²°ì œì‹œ ì¸í…íŠ¸ ë¦¬í„´ (í´ë¼ì´ì–¸íŠ¸ ì•„ì´ë””, í´ë¼ì´ì–¸íŠ¸ ì‹œí¬ë¦¿, ê°€ë§¹ì  ì•„ì´ë””, ê²°ì œ ì§ì› ì•„ì´ë””, ê³µê¸‰ê°€ì•¡, ë¶€ê°€ì„¸, ë´‰ì‚¬ë£Œ, ìƒí’ˆì„¤ëª…,
+    //								   ìƒí’ˆì¡°íšŒ íƒ€ì…, ìƒí’ˆì½”ë“œ ë˜ëŠ” ë²ˆí˜¸, ìƒí’ˆê°œìˆ˜,
+    //								   ìƒì ê´€ë¦¬ìš© ë¶€ê°€ë°ì´í„° (4096ë°”ì´íŠ¸), ê³ ê°ëª…, ê³ ê° ì´ë©”ì¼, ê³ ê° ìœ ì„  ì „í™”ë²ˆí˜¸, ê³ ê° ë¬´ì„  ì „í™”ë²ˆí˜¸, ì˜ìˆ˜ì¦ ë°œí–‰ ì—¬ë¶€)
     public Intent setCardPayItem(String client_id, String client_secret, 
-    												String store_screen_name, String employee_screen_name,
-    												String amount, String tax, String fee, String comment,
-    												String search_type, String item_code, String item_count,
-    												String additional_data, String customer_name, String customer_email, String customer_phone, String customer_mobile) {
+    				 String store_screen_name, String employee_screen_name,
+    				 String amount, String tax, String fee, String comment,
+    				 String search_type, String item_code, String item_count,
+    				 String additional_data, String customer_name, String customer_email, 
+    				 String customer_phone, String customer_mobile, boolean receipt_unissued) {
     	Intent intent = new Intent(action);
 		intent.putExtra("type", "card");
 		intent.putExtra("client_id", client_id);
@@ -72,18 +75,20 @@ public class PayatService {
 		intent.putExtra("customer_email", customer_email);
 		intent.putExtra("customer_phone", customer_phone);
 		intent.putExtra("customer_mobile", customer_mobile);
+		intent.putExtra("receipt_unissued", receipt_unissued);
 		intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
 		
 		return intent;
     }
     
-    //»óÇ°ÀÌ ¾øÀ»½Ã
-    //Çö±İ°áÁ¦½Ã ÀÎÅÙÆ® ¸®ÅÏ (Å¬¶óÀÌ¾ğÆ® ¾ÆÀÌµğ, Å¬¶óÀÌ¾ğÆ® ½ÃÅ©¸´, °¡¸ÍÁ¡ ¾ÆÀÌµğ, °áÁ¦ Á÷¿ø ¾ÆÀÌµğ, °ø±Ş°¡¾×, ºÎ°¡¼¼, ºÀ»ç·á, »óÇ°¼³¸í,
-    //								   »óÁ¡°ü¸®¿ë ºÎ°¡µ¥ÀÌÅÍ (4096¹ÙÀÌÆ®), °í°´¸í, °í°´ ÀÌ¸ŞÀÏ, °í°´ À¯¼± ÀüÈ­¹øÈ£, °í°´ ¹«¼± ÀüÈ­¹øÈ£)
+    //ìƒí’ˆì´ ì—†ì„ì‹œ
+    //í˜„ê¸ˆê²°ì œì‹œ ì¸í…íŠ¸ ë¦¬í„´ (í´ë¼ì´ì–¸íŠ¸ ì•„ì´ë””, í´ë¼ì´ì–¸íŠ¸ ì‹œí¬ë¦¿, ê°€ë§¹ì  ì•„ì´ë””, ê²°ì œ ì§ì› ì•„ì´ë””, ê³µê¸‰ê°€ì•¡, ë¶€ê°€ì„¸, ë´‰ì‚¬ë£Œ, ìƒí’ˆì„¤ëª…,
+    //								   ìƒì ê´€ë¦¬ìš© ë¶€ê°€ë°ì´í„° (4096ë°”ì´íŠ¸), ê³ ê°ëª…, ê³ ê° ì´ë©”ì¼, ê³ ê° ìœ ì„  ì „í™”ë²ˆí˜¸, ê³ ê° ë¬´ì„  ì „í™”ë²ˆí˜¸, ì˜ìˆ˜ì¦ ë°œí–‰ ì—¬ë¶€)
     public Intent setCashPay(String client_id, String client_secret, 
-											String store_screen_name, String employee_screen_name,
-											String amount, String tax, String fee, String comment,
-											String additional_data, String customer_name, String customer_email, String customer_phone, String customer_mobile) {
+			     String store_screen_name, String employee_screen_name,
+			     String amount, String tax, String fee, String comment,
+			     String additional_data, String customer_name, String customer_email, 
+			     String customer_phone, String customer_mobile, boolean receipt_unissued) {
     	Intent intent = new Intent(action);
 		intent.putExtra("type", "cash");
 		intent.putExtra("client_id", client_id);
@@ -99,20 +104,22 @@ public class PayatService {
 		intent.putExtra("customer_email", customer_email);
 		intent.putExtra("customer_phone", customer_phone);
 		intent.putExtra("customer_mobile", customer_mobile);
+		intent.putExtra("receipt_unissued", receipt_unissued);
 		intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
 		
 		return intent;
     }
     
-    //»óÇ°ÀÌ ÀÖÀ»½Ã 
-    //Çö±İ°áÁ¦½Ã ÀÎÅÙÆ® ¸®ÅÏ (Å¬¶óÀÌ¾ğÆ® ¾ÆÀÌµğ, Å¬¶óÀÌ¾ğÆ® ½ÃÅ©¸´, °¡¸ÍÁ¡ ¾ÆÀÌµğ, °áÁ¦ Á÷¿ø ¾ÆÀÌµğ, °ø±Ş°¡¾×, ºÎ°¡¼¼, ºÀ»ç·á, »óÇ°¼³¸í,
-    //								   »óÇ°Á¶È¸ Å¸ÀÔ, »óÇ°ÄÚµå ¶Ç´Â ¹øÈ£, »óÇ°°³¼ö,
-    //								   »óÁ¡°ü¸®¿ë ºÎ°¡µ¥ÀÌÅÍ (4096¹ÙÀÌÆ®), °í°´¸í, °í°´ ÀÌ¸ŞÀÏ, °í°´ À¯¼± ÀüÈ­¹øÈ£, °í°´ ¹«¼± ÀüÈ­¹øÈ£)
+    //ìƒí’ˆì´ ìˆì„ì‹œ 
+    //í˜„ê¸ˆê²°ì œì‹œ ì¸í…íŠ¸ ë¦¬í„´ (í´ë¼ì´ì–¸íŠ¸ ì•„ì´ë””, í´ë¼ì´ì–¸íŠ¸ ì‹œí¬ë¦¿, ê°€ë§¹ì  ì•„ì´ë””, ê²°ì œ ì§ì› ì•„ì´ë””, ê³µê¸‰ê°€ì•¡, ë¶€ê°€ì„¸, ë´‰ì‚¬ë£Œ, ìƒí’ˆì„¤ëª…,
+    //								   ìƒí’ˆì¡°íšŒ íƒ€ì…, ìƒí’ˆì½”ë“œ ë˜ëŠ” ë²ˆí˜¸, ìƒí’ˆê°œìˆ˜,
+    //								   ìƒì ê´€ë¦¬ìš© ë¶€ê°€ë°ì´í„° (4096ë°”ì´íŠ¸), ê³ ê°ëª…, ê³ ê° ì´ë©”ì¼, ê³ ê° ìœ ì„  ì „í™”ë²ˆí˜¸, ê³ ê° ë¬´ì„  ì „í™”ë²ˆí˜¸, ì˜ìˆ˜ì¦ ë°œí–‰ ì—¬ë¶€)
     public Intent setCashPayItem(String client_id, String client_secret, 
-													String store_screen_name, String employee_screen_name,
-													String amount, String tax, String fee, String comment,
-													String search_type, String item_code, String item_count,
-													String additional_data, String customer_name, String customer_email, String customer_phone, String customer_mobile) {
+				 String store_screen_name, String employee_screen_name,
+				 String amount, String tax, String fee, String comment,
+				 String search_type, String item_code, String item_count,
+				 String additional_data, String customer_name, String customer_email, 
+				 String customer_phone, String customer_mobile, boolean receipt_unissued) {
 		Intent intent = new Intent(action);
 		intent.putExtra("type", "card");
 		intent.putExtra("client_id", client_id);
@@ -131,6 +138,7 @@ public class PayatService {
 		intent.putExtra("customer_email", customer_email);
 		intent.putExtra("customer_phone", customer_phone);
 		intent.putExtra("customer_mobile", customer_mobile);
+		intent.putExtra("receipt_unissued", receipt_unissued);
 		intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
 		
 		return intent;
