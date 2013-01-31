@@ -48,24 +48,26 @@ callCardPayItem()로 Intent를 리턴 받아 startActivity()로 페이앳을 불
 
     setCashPay(String client_id, String client_secret, String store_screen_name, String employee_screen_name,
             String amount, String tax, String fee, String comment, String additional_data, 
-            String customer_name, String customer_email, String customer_phone, String customer_mobile)
+            String customer_name, String customer_email, String customer_phone, String customer_mobile, boolean receipt_unissued)
 
 >setCashPay()로 Intent를 return 받아 startActivity()로 페이앳을 실행합니다.
 
 >필요인자 : 클라이언트 아이디, 클라이언트 시크릿, 가맹점 아이디, 결제 직원 아이디, 공급가액, 부가세, 봉사료, 상품설명,
-상점관리용 부가데이터 (4096바이트), 고객명, 고객 이메일, 고객 유선 전화번호, 고객 무선 전화번호
+상점관리용 부가데이터 (4096바이트), 고객명, 고객 이메일, 고객 유선 전화번호, 고객 무선 전화번호,
+영수증 발행 여부(페이앳 영수증을 발행할건지 여부 - true일 경우 발행하지 않으며 결제결과를 바로 리턴시킵니다.)
 
 
 카드결제
 
     setCardPay(String client_id, String client_secret, String store_screen_name, String employee_screen_name,
             String amount, String tax, String fee, String comment, String additional_data, 
-            String customer_name, String customer_email, String customer_phone, String customer_mobile)
+            String customer_name, String customer_email, String customer_phone, String customer_mobile, boolean receipt_unissued)
 
 >setCardPay()로 Intent를 return 받아 startActivity()로 페이앳을 실행합니다.
 
 >필요인자 : 클라이언트 아이디, 클라이언트 시크릿, 가맹점 아이디, 결제 직원 아이디, 공급가액, 부가세, 봉사료, 상품설명,
-상점관리용 부가데이터 (4096바이트), 고객명, 고객 이메일, 고객 유선 전화번호, 고객 무선 전화번호
+상점관리용 부가데이터 (4096바이트), 고객명, 고객 이메일, 고객 유선 전화번호, 고객 무선 전화번호,
+영수증 발행 여부(페이앳 영수증을 발행할건지 여부 - true일 경우 발행하지 않으며 결제결과를 바로 리턴시킵니다.)
 
 ---------------------------------------
 
@@ -80,25 +82,27 @@ callCardPayItem()로 Intent를 리턴 받아 startActivity()로 페이앳을 불
 
       setCashPayItem(String client_id, String client_secret, String store_screen_name, String employee_screen_name,
                 String amount, String tax, String fee, String comment,String search_type, String item_code, String item_count,
-                String additional_data, String customer_name, String customer_email, String customer_phone, String customer_mobile) 
+                String additional_data, String customer_name, String customer_email, String customer_phone, String customer_mobile, boolean receipt_unissued) 
 
 
 >현금결제를 위한 정보를 이용해 Intent를 return 받아 startActivity()로 페이앳을 실행합니다.
 
 >필요인자 : 클라이언트 아이디, 클라이언트 시크릿, 가맹점 아이디, 결제 직원 아이디, 공급가액, 부가세, 봉사료, 상품설명,
-상품조회 타입, 상품코드 또는 번호, 상품개수, 상점관리용 부가데이터 (4096바이트), 고객명, 고객 이메일, 고객 유선 전화번호, 고객 무선 전화번호
+상품조회 타입, 상품코드 또는 번호, 상품개수, 상점관리용 부가데이터 (4096바이트), 고객명, 고객 이메일, 고객 유선 전화번호, 고객 무선 전화번호,
+영수증 발행 여부(페이앳 영수증을 발행할건지 여부 - true일 경우 발행하지 않으며 결제결과를 바로 리턴시킵니다.)
 
 카드결제
 
       setCardPayItem(String client_id, String client_secret, String store_screen_name, String employee_screen_name,
                 String amount, String tax, String fee, String comment,String search_type, String item_code, String item_count,
-                String additional_data, String customer_name, String customer_email, String customer_phone, String customer_mobile) 
+                String additional_data, String customer_name, String customer_email, String customer_phone, String customer_mobile, boolean receipt_unissued) 
 
 
 >카드결제를 위한 정보를 이용해 Intent를 return 받아 startActivity()로 페이앳을 실행합니다.
 
 >필요인자 : 클라이언트 아이디, 클라이언트 시크릿, 가맹점 아이디, 결제 직원 아이디, 공급가액, 부가세, 봉사료, 상품설명,
-상품조회 타입, 상품코드 또는 번호, 상품개수, 상점관리용 부가데이터 (4096바이트), 고객명, 고객 이메일, 고객 유선 전화번호, 고객 무선 전화번호
+상품조회 타입, 상품코드 또는 번호, 상품개수, 상점관리용 부가데이터 (4096바이트), 고객명, 고객 이메일, 고객 유선 전화번호, 고객 무선 전화번호,
+영수증 발행 여부(페이앳 영수증을 발행할건지 여부 - true일 경우 발행하지 않으며 결제결과를 바로 리턴시킵니다.)
 >>>>>>> 17f9edc78544d2a182cd639c9b393921a4c30534
 
 >      public BroadcastReceiver paymentResultReceiver =  new BroadcastReceiver() {
