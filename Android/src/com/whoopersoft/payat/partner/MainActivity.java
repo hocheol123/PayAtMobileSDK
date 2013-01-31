@@ -105,7 +105,7 @@ public class MainActivity extends Activity implements OnClickListener{
     	customer_email = "help@whoopersoft.com";		//고객 이메일
     	customer_phone = "0248864885";		//고객 유선 전화번호
     	customer_mobile = "01088880917";		//고객 무선 전화번호
-    	receipt_unissued = false;		//페이앳 영수증 발행 여부
+    	receipt_unissued = false;		//페이앳 영수증 발행
 
         //상품이 있을시
         //카드결제시 인텐트 리턴 (클라이언트 아이디, 클라이언트 시크릿, 가맹점 아이디, 결제 직원 아이디, 공급가액, 부가세, 봉사료, 상품설명,
@@ -131,7 +131,7 @@ public class MainActivity extends Activity implements OnClickListener{
     	customer_email = "help@whoopersoft.com";		//고객 이메일
     	customer_phone = "0248864885";		//고객 유선 전화번호
     	customer_mobile = "01088880917";		//고객 무선 전화번호
-    	receipt_unissued = true;		//페이앳 영수증 발행 여부
+    	receipt_unissued = false;		//페이앳 영수증 발행
 		
 		//현금결제시 인텐트 리턴 (클라이언트 아이디, 클라이언트 시크릿, 가맹점 아이디, 결제 직원 아이디, 공급가액, 부가세, 봉사료, 상품설명,
         //								   상점관리용 부가데이터 (4096바이트), 고객명, 고객 이메일, 고객 유선 전화번호, 고객 무선 전화번호)
@@ -156,7 +156,7 @@ public class MainActivity extends Activity implements OnClickListener{
     	customer_email = "help@whoopersoft.com";		//고객 이메일
     	customer_phone = "0248864885";		//고객 유선 전화번호
     	customer_mobile = "01088880917";		//고객 무선 전화번호
-    	receipt_unissued = false;		//페이앳 영수증 발행 여부
+    	receipt_unissued = false;		//페이앳 영수증 발행
 
         //상품이 있을시
         //카드결제시 인텐트 리턴 (클라이언트 아이디, 클라이언트 시크릿, 가맹점 아이디, 결제 직원 아이디, 공급가액, 부가세, 봉사료, 상품설명,
@@ -182,7 +182,7 @@ public class MainActivity extends Activity implements OnClickListener{
     	customer_email = "help@whoopersoft.com";		//고객 이메일
     	customer_phone = "0248864885";		//고객 유선 전화번호
     	customer_mobile = "01088880917";		//고객 무선 전화번호
-    	receipt_unissued = true;		//페이앳 영수증 발행 여부
+    	receipt_unissued = false;		//페이앳 영수증 발행
 		
 		//현금결제시 인텐트 리턴 (클라이언트 아이디, 클라이언트 시크릿, 가맹점 아이디, 결제 직원 아이디, 공급가액, 부가세, 봉사료, 상품설명,
         //								   상점관리용 부가데이터 (4096바이트), 고객명, 고객 이메일, 고객 유선 전화번호, 고객 무선 전화번호)
