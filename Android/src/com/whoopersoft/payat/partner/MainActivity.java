@@ -16,29 +16,31 @@ import android.widget.Button;
 import android.widget.TextView;
 
 public class MainActivity extends Activity implements OnClickListener{
-	private static String TAG = "PartnerPayat";		//·Î±× ÅÂ±×
+	private static String TAG = "PartnerPayat";		//ë¡œê·¸ íƒœê·¸
 	
-	private TextView txt_callable;				//ÆäÀÌ¾Ü È£Ãâ °¡´É ¿©ºÎ ÅØ½ºÆ®
-	private Button btn_card_payment;		//Ä«µå°áÁ¦ ¹öÆ° 
-	private Button btn_cash_payment;		//Çö±İ°áÁ¦ ¹öÆ° 
+	private TextView txt_callable;				//í˜ì´ì•³ í˜¸ì¶œ ê°€ëŠ¥ ì—¬ë¶€ í…ìŠ¤íŠ¸
+	private Button btn_card_payment;		//ì¹´ë“œê²°ì œ ë²„íŠ¼ 
+	private Button btn_cash_payment;		//í˜„ê¸ˆê²°ì œ ë²„íŠ¼ 
 	
-	private PayatService payatService;		//ÆäÀÌ¾Ü API
-	private String client_id = "aegisep";	//¹ß±Ş¹ŞÀº Å¬¶óÀÌ¾ğÆ® ¾ÆÀÌµğ
-	private String client_secret = "7adb3bdb22db89f220549925e27e53853c5f20dc8976a06d4513016718b9da96";		//¹ß±Ş¹ŞÀº ½ÃÅ©¸´
-	private String store_screen_name = "111111";			//°¡¸ÍÁ¡ ¾ÆÀÌµğ
-	private String employee_screen_name = "111111";		//°áÁ¦ Á÷¿ø ¾ÆÀÌµğ
+	private PayatService payatService;		//í˜ì´ì•³ API
+	private String client_id = "aegisep";	//ë°œê¸‰ë°›ì€ í´ë¼ì´ì–¸íŠ¸ ì•„ì´ë””
+	private String client_secret = "7adb3bdb22db89f220549925e27e53853c5f20dc8976a06d4513016718b9da96";		//ë°œê¸‰ë°›ì€ ì‹œí¬ë¦¿
+	private String store_screen_name = "111111";			//ê°€ë§¹ì  ì•„ì´ë””
+	private String employee_screen_name = "111111";		//ê²°ì œ ì§ì› ì•„ì´ë””
 	
-	//»óÇ°Á¤º¸ Á¶È¸ Å¸ÀÔ(»óÇ° ÄÚµå ¶Ç´Â ¹øÈ£·Î Á¶È¸), »óÇ°ÄÚµå ¶Ç´Â ¹øÈ£, °¢ »óÇ° °³¼ö, °ø±Ş°¡¾×(ÃÖÁ¾±İ¾×¿¡¼­ VAT»« ±İ¾×), ºÎ°¡¼¼, ºÀ»ç·á, »óÇ°¼³¸í
+	//ìƒí’ˆì •ë³´ ì¡°íšŒ íƒ€ì…(ìƒí’ˆ ì½”ë“œ ë˜ëŠ” ë²ˆí˜¸ë¡œ ì¡°íšŒ), ìƒí’ˆì½”ë“œ ë˜ëŠ” ë²ˆí˜¸, ê° ìƒí’ˆ ê°œìˆ˜, ê³µê¸‰ê°€ì•¡(ìµœì¢…ê¸ˆì•¡ì—ì„œ VATëº€ ê¸ˆì•¡), ë¶€ê°€ì„¸, ë´‰ì‚¬ë£Œ, ìƒí’ˆì„¤ëª…
 	private String search_type, item_code, item_count, amount, tax, fee, comment;
-	//»óÁ¡°ü¸®¿ë ºÎ°¡µ¥ÀÌÅÍ (4096¹ÙÀÌÆ®), °í°´¸í, °í°´ ÀÌ¸ŞÀÏ, °í°´ À¯¼± ÀüÈ­¹øÈ£, °í°´ ¹«¼± ÀüÈ­¹øÈ£
+	//ìƒì ê´€ë¦¬ìš© ë¶€ê°€ë°ì´í„° (4096ë°”ì´íŠ¸), ê³ ê°ëª…, ê³ ê° ì´ë©”ì¼, ê³ ê° ìœ ì„  ì „í™”ë²ˆí˜¸, ê³ ê° ë¬´ì„  ì „í™”ë²ˆí˜¸
 	private String additional_data, customer_name, customer_email, customer_phone, customer_mobile;
-	private boolean callable = false;		//ÆäÀÌ¾Ü È£Ãâ °¡´É ¿©ºÎ
+	
+	private boolean receipt_unissued = false;		//í˜ì´ì•³ ì˜ìˆ˜ì¦ ë°œí–‰ ì—¬ë¶€	(true : ì˜ìˆ˜ì¦ ë¯¸ë°œí–‰, false : ì˜ìˆ˜ì¦ ë°œí–‰)
+	private boolean callable = false;		//í˜ì´ì•³ í˜¸ì¶œ ê°€ëŠ¥ ì—¬ë¶€
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
-        registerReceiver(paymentResultReceiver, new IntentFilter(Intent.ACTION_MAIN));		//ºê·ÎµåÄ³½ºÆ® µî·Ï
+        registerReceiver(paymentResultReceiver, new IntentFilter(Intent.ACTION_MAIN));		//ë¸Œë¡œë“œìºìŠ¤íŠ¸ ë“±ë¡
         txt_callable = (TextView) findViewById (R.id.txt_callable);
         btn_card_payment = (Button) findViewById (R.id.btn_card_payment);
         btn_cash_payment = (Button) findViewById (R.id.btn_cash_payment);
@@ -58,20 +60,20 @@ public class MainActivity extends Activity implements OnClickListener{
 	@Override
 	protected void onDestroy() {
 		super.onDestroy();
-        unregisterReceiver(paymentResultReceiver);		//ºê·ÎµåÄ³½ºÆ® ÇØÁ¦
+        unregisterReceiver(paymentResultReceiver);		//ë¸Œë¡œë“œìºìŠ¤íŠ¸ í•´ì œ
 	}
 
 	@Override
 	public void onClick(View v) {
 		if(v == btn_card_payment){
-			callCardPayItem();
+			callCardPay();
 		}
 		else if(v == btn_cash_payment){
 			callCashPay();
 		}
 	}
 
-    public BroadcastReceiver paymentResultReceiver =  new BroadcastReceiver() {	//°áÁ¦°á°ú °ªÀ» ¹ŞÀ» ºê·ÎµåÄ³½ºÆ®
+    public BroadcastReceiver paymentResultReceiver =  new BroadcastReceiver() {	//ê²°ì œê²°ê³¼ ê°’ì„ ë°›ì„ ë¸Œë¡œë“œìºìŠ¤íŠ¸
         @Override
         public void onReceive(Context context, Intent intent) {
         	try{
@@ -88,111 +90,117 @@ public class MainActivity extends Activity implements OnClickListener{
         }
     };
     
-    public void callCardPayItem() {		//»óÇ°¸ñ·ÏÀÌ ÀÖÀ»¶§, Ä«µå°áÁ¦Ã¢ È£Ãâ
-    	amount = "1090";		//°ø±Ş°¡¾×
-    	tax = "110";					//ºÎ°¡¼¼
-    	fee = "0";					//ºÀ»ç·á
-    	search_type = "no_in";	//»óÇ°¹øÈ£·Î »óÇ°Á¶È¸ (no_in - »óÇ° ¹øÈ£·Î Á¶È¸, code_in - »óÇ° ÄÚµå·Î Á¶È¸)
-    	item_code = "1947,1859";	//»óÇ° ¹øÈ£·Î Á¶È¸ÀÌ¹Ç·Î »óÇ° ¹øÈ£¸¦ ÄŞ¸¶(,)·Î ±¸ºĞ
-    	item_count = "2,1";		//°¢ »óÇ°ÀÇ °³¼ö ÄŞ¸¶(,)·Î ±¸ºĞ   
+    public void callCardPayItem() {		//ìƒí’ˆëª©ë¡ì´ ìˆì„ë•Œ, ì¹´ë“œê²°ì œì°½ í˜¸ì¶œ
+    	amount = "1090";		//ê³µê¸‰ê°€ì•¡
+    	tax = "110";					//ë¶€ê°€ì„¸
+    	fee = "0";					//ë´‰ì‚¬ë£Œ
+    	search_type = "no_in";	//ìƒí’ˆë²ˆí˜¸ë¡œ ìƒí’ˆì¡°íšŒ (no_in - ìƒí’ˆ ë²ˆí˜¸ë¡œ ì¡°íšŒ, code_in - ìƒí’ˆ ì½”ë“œë¡œ ì¡°íšŒ)
+    	item_code = "1947,1859";	//ìƒí’ˆ ë²ˆí˜¸ë¡œ ì¡°íšŒì´ë¯€ë¡œ ìƒí’ˆ ë²ˆí˜¸ë¥¼ ì½¤ë§ˆ(,)ë¡œ êµ¬ë¶„
+    	item_count = "2,1";		//ê° ìƒí’ˆì˜ ê°œìˆ˜ ì½¤ë§ˆ(,)ë¡œ êµ¬ë¶„   
     	
-    	///¿É¼Ç ÇÊµå (¿É¼ÇÀ¸·Î Ãß°¡ÇÒ ¼ö ÀÖ½À´Ï´Ù)
-    	comment = "¾Èµå·Îº¸ÀÌ 1°³, ¼ÒÁÖ 2º´";		//»óÇ°¼³¸í(20ÀÚ ÀÌ³»)
-    	additional_data = "¹è¼Û ³ëÆ®=°æºñ½Ç¿¡ ¸Ã°ÜÁÖ¼¼¿ä";		//»óÁ¡°ü¸®¿ë ºÎ°¡µ¥ÀÌÅÍ (4096¹ÙÀÌÆ®)
-    	customer_name = "±èÈÄÆÛ";		//°í°´¸í
-    	customer_email = "help@whoopersoft.com";		//°í°´ ÀÌ¸ŞÀÏ
-    	customer_phone = "0248864885";		//°í°´ À¯¼± ÀüÈ­¹øÈ£
-    	customer_mobile = "01088880917";		//°í°´ ¹«¼± ÀüÈ­¹øÈ£
+    	///ì˜µì…˜ í•„ë“œ (ì˜µì…˜ìœ¼ë¡œ ì¶”ê°€í•  ìˆ˜ ìˆìŠµë‹ˆë‹¤)
+    	comment = "ì•ˆë“œë¡œë³´ì´ 1ê°œ, ì†Œì£¼ 2ë³‘";		//ìƒí’ˆì„¤ëª…(20ì ì´ë‚´)
+    	additional_data = "ë°°ì†¡ ë…¸íŠ¸=ê²½ë¹„ì‹¤ì— ë§¡ê²¨ì£¼ì„¸ìš”";		//ìƒì ê´€ë¦¬ìš© ë¶€ê°€ë°ì´í„° (4096ë°”ì´íŠ¸)
+    	customer_name = "ê¹€í›„í¼";		//ê³ ê°ëª…
+    	customer_email = "help@whoopersoft.com";		//ê³ ê° ì´ë©”ì¼
+    	customer_phone = "0248864885";		//ê³ ê° ìœ ì„  ì „í™”ë²ˆí˜¸
+    	customer_mobile = "01088880917";		//ê³ ê° ë¬´ì„  ì „í™”ë²ˆí˜¸
+    	receipt_unissued = false;		//í˜ì´ì•³ ì˜ìˆ˜ì¦ ë°œí–‰ ì—¬ë¶€
 
-        //»óÇ°ÀÌ ÀÖÀ»½Ã
-        //Ä«µå°áÁ¦½Ã ÀÎÅÙÆ® ¸®ÅÏ (Å¬¶óÀÌ¾ğÆ® ¾ÆÀÌµğ, Å¬¶óÀÌ¾ğÆ® ½ÃÅ©¸´, °¡¸ÍÁ¡ ¾ÆÀÌµğ, °áÁ¦ Á÷¿ø ¾ÆÀÌµğ, °ø±Ş°¡¾×, ºÎ°¡¼¼, ºÀ»ç·á, »óÇ°¼³¸í,
-        //								   »óÇ°Á¶È¸ Å¸ÀÔ, »óÇ°ÄÚµå ¶Ç´Â ¹øÈ£, »óÇ°°³¼ö,
-        //								   »óÁ¡°ü¸®¿ë ºÎ°¡µ¥ÀÌÅÍ (4096¹ÙÀÌÆ®), °í°´¸í, °í°´ ÀÌ¸ŞÀÏ, °í°´ À¯¼± ÀüÈ­¹øÈ£, °í°´ ¹«¼± ÀüÈ­¹øÈ£)
+        //ìƒí’ˆì´ ìˆì„ì‹œ
+        //ì¹´ë“œê²°ì œì‹œ ì¸í…íŠ¸ ë¦¬í„´ (í´ë¼ì´ì–¸íŠ¸ ì•„ì´ë””, í´ë¼ì´ì–¸íŠ¸ ì‹œí¬ë¦¿, ê°€ë§¹ì  ì•„ì´ë””, ê²°ì œ ì§ì› ì•„ì´ë””, ê³µê¸‰ê°€ì•¡, ë¶€ê°€ì„¸, ë´‰ì‚¬ë£Œ, ìƒí’ˆì„¤ëª…,
+        //								   ìƒí’ˆì¡°íšŒ íƒ€ì…, ìƒí’ˆì½”ë“œ ë˜ëŠ” ë²ˆí˜¸, ìƒí’ˆê°œìˆ˜,
+        //								   ìƒì ê´€ë¦¬ìš© ë¶€ê°€ë°ì´í„° (4096ë°”ì´íŠ¸), ê³ ê°ëª…, ê³ ê° ì´ë©”ì¼, ê³ ê° ìœ ì„  ì „í™”ë²ˆí˜¸, ê³ ê° ë¬´ì„  ì „í™”ë²ˆí˜¸)
     	Intent intent = payatService.setCardPayItem(client_id, client_secret, store_screen_name, employee_screen_name, 
     			 														 amount, tax, fee, comment,
     																	 search_type, item_code, item_count,
-    																	 additional_data, customer_name, customer_email, customer_phone, customer_mobile);		
+    																	 additional_data, customer_name, customer_email, 
+    																	 customer_phone, customer_mobile, receipt_unissued);		
 		startActivity(intent);
     }
     
-    public void callCardPay() {		//»óÇ°¸ñ·ÏÀÌ ¾øÀ»¶§, Ä«µå°áÁ¦Ã¢ È£Ãâ
-    	amount = "912";		//°ø±Ş°¡¾×
-    	tax = "92";					//ºÎ°¡¼¼
-    	fee = "0";					//ºÀ»ç·á
+    public void callCardPay() {		//ìƒí’ˆëª©ë¡ì´ ì—†ì„ë•Œ, ì¹´ë“œê²°ì œì°½ í˜¸ì¶œ
+    	amount = "912";		//ê³µê¸‰ê°€ì•¡
+    	tax = "92";					//ë¶€ê°€ì„¸
+    	fee = "0";					//ë´‰ì‚¬ë£Œ
     	
-    	///¿É¼Ç ÇÊµå (¿É¼ÇÀ¸·Î Ãß°¡ÇÒ ¼ö ÀÖ½À´Ï´Ù)
-    	comment = "ÀÚÀÏ¸®Åç";		//»óÇ°¼³¸í(20ÀÚ ÀÌ³»)
-    	additional_data = "¹è¼Û ³ëÆ®=°æºñ½Ç¿¡ ¸Ã°ÜÁÖ¼¼¿ä";		//»óÁ¡°ü¸®¿ë ºÎ°¡µ¥ÀÌÅÍ (4096¹ÙÀÌÆ®)
-    	customer_name = "±èÈÄÆÛ";		//°í°´¸í
-    	customer_email = "help@whoopersoft.com";		//°í°´ ÀÌ¸ŞÀÏ
-    	customer_phone = "0248864885";		//°í°´ À¯¼± ÀüÈ­¹øÈ£
-    	customer_mobile = "01088880917";		//°í°´ ¹«¼± ÀüÈ­¹øÈ£
+    	///ì˜µì…˜ í•„ë“œ (ì˜µì…˜ìœ¼ë¡œ ì¶”ê°€í•  ìˆ˜ ìˆìŠµë‹ˆë‹¤)
+    	comment = "ìì¼ë¦¬í†¨";		//ìƒí’ˆì„¤ëª…(20ì ì´ë‚´)
+    	additional_data = "ë°°ì†¡ ë…¸íŠ¸=ê²½ë¹„ì‹¤ì— ë§¡ê²¨ì£¼ì„¸ìš”";		//ìƒì ê´€ë¦¬ìš© ë¶€ê°€ë°ì´í„° (4096ë°”ì´íŠ¸)
+    	customer_name = "ê¹€í›„í¼";		//ê³ ê°ëª…
+    	customer_email = "help@whoopersoft.com";		//ê³ ê° ì´ë©”ì¼
+    	customer_phone = "0248864885";		//ê³ ê° ìœ ì„  ì „í™”ë²ˆí˜¸
+    	customer_mobile = "01088880917";		//ê³ ê° ë¬´ì„  ì „í™”ë²ˆí˜¸
+    	receipt_unissued = true;		//í˜ì´ì•³ ì˜ìˆ˜ì¦ ë°œí–‰ ì—¬ë¶€
 		
-		//Çö±İ°áÁ¦½Ã ÀÎÅÙÆ® ¸®ÅÏ (Å¬¶óÀÌ¾ğÆ® ¾ÆÀÌµğ, Å¬¶óÀÌ¾ğÆ® ½ÃÅ©¸´, °¡¸ÍÁ¡ ¾ÆÀÌµğ, °áÁ¦ Á÷¿ø ¾ÆÀÌµğ, °ø±Ş°¡¾×, ºÎ°¡¼¼, ºÀ»ç·á, »óÇ°¼³¸í,
-        //								   »óÁ¡°ü¸®¿ë ºÎ°¡µ¥ÀÌÅÍ (4096¹ÙÀÌÆ®), °í°´¸í, °í°´ ÀÌ¸ŞÀÏ, °í°´ À¯¼± ÀüÈ­¹øÈ£, °í°´ ¹«¼± ÀüÈ­¹øÈ£)
+		//í˜„ê¸ˆê²°ì œì‹œ ì¸í…íŠ¸ ë¦¬í„´ (í´ë¼ì´ì–¸íŠ¸ ì•„ì´ë””, í´ë¼ì´ì–¸íŠ¸ ì‹œí¬ë¦¿, ê°€ë§¹ì  ì•„ì´ë””, ê²°ì œ ì§ì› ì•„ì´ë””, ê³µê¸‰ê°€ì•¡, ë¶€ê°€ì„¸, ë´‰ì‚¬ë£Œ, ìƒí’ˆì„¤ëª…,
+        //								   ìƒì ê´€ë¦¬ìš© ë¶€ê°€ë°ì´í„° (4096ë°”ì´íŠ¸), ê³ ê°ëª…, ê³ ê° ì´ë©”ì¼, ê³ ê° ìœ ì„  ì „í™”ë²ˆí˜¸, ê³ ê° ë¬´ì„  ì „í™”ë²ˆí˜¸)
     	Intent intent = payatService.setCardPay(client_id, client_secret, store_screen_name, employee_screen_name, amount, tax, fee, comment,
-    																additional_data, customer_name, customer_email, customer_phone, customer_mobile);	
+    																additional_data, customer_name, customer_email, customer_phone, customer_mobile, receipt_unissued);	
 		startActivity(intent);
     }
 
     
-    public void callCashPayItem() {		//»óÇ°¸ñ·ÏÀÌ ÀÖÀ»¶§, Çö±İ°áÁ¦Ã¢ È£Ãâ
-    	amount = "912";		//°ø±Ş°¡¾×
-    	tax = "92";					//ºÎ°¡¼¼
-    	fee = "0";					//ºÀ»ç·á
-    	search_type = "no_in";	//»óÇ°¹øÈ£·Î »óÇ°Á¶È¸ (no_in - »óÇ° ¹øÈ£·Î Á¶È¸, code_in - »óÇ° ÄÚµå·Î Á¶È¸)
-    	item_code = "1859";	//»óÇ° ¹øÈ£·Î Á¶È¸ÀÌ¹Ç·Î »óÇ° ¹øÈ£¸¦ ÄŞ¸¶(,)·Î ±¸ºĞ
-    	item_count = "5";		//°¢ »óÇ°ÀÇ °³¼ö ÄŞ¸¶(,)·Î ±¸ºĞ   
+    public void callCashPayItem() {		//ìƒí’ˆëª©ë¡ì´ ìˆì„ë•Œ, í˜„ê¸ˆê²°ì œì°½ í˜¸ì¶œ
+    	amount = "912";		//ê³µê¸‰ê°€ì•¡
+    	tax = "92";					//ë¶€ê°€ì„¸
+    	fee = "0";					//ë´‰ì‚¬ë£Œ
+    	search_type = "no_in";	//ìƒí’ˆë²ˆí˜¸ë¡œ ìƒí’ˆì¡°íšŒ (no_in - ìƒí’ˆ ë²ˆí˜¸ë¡œ ì¡°íšŒ, code_in - ìƒí’ˆ ì½”ë“œë¡œ ì¡°íšŒ)
+    	item_code = "1859";	//ìƒí’ˆ ë²ˆí˜¸ë¡œ ì¡°íšŒì´ë¯€ë¡œ ìƒí’ˆ ë²ˆí˜¸ë¥¼ ì½¤ë§ˆ(,)ë¡œ êµ¬ë¶„
+    	item_count = "5";		//ê° ìƒí’ˆì˜ ê°œìˆ˜ ì½¤ë§ˆ(,)ë¡œ êµ¬ë¶„   
     	
-    	///¿É¼Ç ÇÊµå (¿É¼ÇÀ¸·Î Ãß°¡ÇÒ ¼ö ÀÖ½À´Ï´Ù)
-    	comment = "¾Èµå·Îº¸ÀÌ 5°³";		//»óÇ°¼³¸í(20ÀÚ ÀÌ³»)
-    	additional_data = "¹è¼Û ³ëÆ®=°æºñ½Ç¿¡ ¸Ã°ÜÁÖ¼¼¿ä";		//»óÁ¡°ü¸®¿ë ºÎ°¡µ¥ÀÌÅÍ (4096¹ÙÀÌÆ®)
-    	customer_name = "±èÈÄÆÛ";		//°í°´¸í
-    	customer_email = "help@whoopersoft.com";		//°í°´ ÀÌ¸ŞÀÏ
-    	customer_phone = "0248864885";		//°í°´ À¯¼± ÀüÈ­¹øÈ£
-    	customer_mobile = "01088880917";		//°í°´ ¹«¼± ÀüÈ­¹øÈ£
+    	///ì˜µì…˜ í•„ë“œ (ì˜µì…˜ìœ¼ë¡œ ì¶”ê°€í•  ìˆ˜ ìˆìŠµë‹ˆë‹¤)
+    	comment = "ì•ˆë“œë¡œë³´ì´ 5ê°œ";		//ìƒí’ˆì„¤ëª…(20ì ì´ë‚´)
+    	additional_data = "ë°°ì†¡ ë…¸íŠ¸=ê²½ë¹„ì‹¤ì— ë§¡ê²¨ì£¼ì„¸ìš”";		//ìƒì ê´€ë¦¬ìš© ë¶€ê°€ë°ì´í„° (4096ë°”ì´íŠ¸)
+    	customer_name = "ê¹€í›„í¼";		//ê³ ê°ëª…
+    	customer_email = "help@whoopersoft.com";		//ê³ ê° ì´ë©”ì¼
+    	customer_phone = "0248864885";		//ê³ ê° ìœ ì„  ì „í™”ë²ˆí˜¸
+    	customer_mobile = "01088880917";		//ê³ ê° ë¬´ì„  ì „í™”ë²ˆí˜¸
+    	receipt_unissued = false;		//í˜ì´ì•³ ì˜ìˆ˜ì¦ ë°œí–‰ ì—¬ë¶€
 
-        //»óÇ°ÀÌ ÀÖÀ»½Ã
-        //Ä«µå°áÁ¦½Ã ÀÎÅÙÆ® ¸®ÅÏ (Å¬¶óÀÌ¾ğÆ® ¾ÆÀÌµğ, Å¬¶óÀÌ¾ğÆ® ½ÃÅ©¸´, °¡¸ÍÁ¡ ¾ÆÀÌµğ, °áÁ¦ Á÷¿ø ¾ÆÀÌµğ, °ø±Ş°¡¾×, ºÎ°¡¼¼, ºÀ»ç·á, »óÇ°¼³¸í,
-        //								   »óÇ°Á¶È¸ Å¸ÀÔ, »óÇ°ÄÚµå ¶Ç´Â ¹øÈ£, »óÇ°°³¼ö,
-        //								   »óÁ¡°ü¸®¿ë ºÎ°¡µ¥ÀÌÅÍ (4096¹ÙÀÌÆ®), °í°´¸í, °í°´ ÀÌ¸ŞÀÏ, °í°´ À¯¼± ÀüÈ­¹øÈ£, °í°´ ¹«¼± ÀüÈ­¹øÈ£)
+        //ìƒí’ˆì´ ìˆì„ì‹œ
+        //ì¹´ë“œê²°ì œì‹œ ì¸í…íŠ¸ ë¦¬í„´ (í´ë¼ì´ì–¸íŠ¸ ì•„ì´ë””, í´ë¼ì´ì–¸íŠ¸ ì‹œí¬ë¦¿, ê°€ë§¹ì  ì•„ì´ë””, ê²°ì œ ì§ì› ì•„ì´ë””, ê³µê¸‰ê°€ì•¡, ë¶€ê°€ì„¸, ë´‰ì‚¬ë£Œ, ìƒí’ˆì„¤ëª…,
+        //								   ìƒí’ˆì¡°íšŒ íƒ€ì…, ìƒí’ˆì½”ë“œ ë˜ëŠ” ë²ˆí˜¸, ìƒí’ˆê°œìˆ˜,
+        //								   ìƒì ê´€ë¦¬ìš© ë¶€ê°€ë°ì´í„° (4096ë°”ì´íŠ¸), ê³ ê°ëª…, ê³ ê° ì´ë©”ì¼, ê³ ê° ìœ ì„  ì „í™”ë²ˆí˜¸, ê³ ê° ë¬´ì„  ì „í™”ë²ˆí˜¸)
     	Intent intent = payatService.setCashPayItem(client_id, client_secret, store_screen_name, employee_screen_name, 
     			 														 amount, tax, fee, comment,
     																	 search_type, item_code, item_count,
-    																	 additional_data, customer_name, customer_email, customer_phone, customer_mobile);		
+    																	 additional_data, customer_name, customer_email, 
+    																	 customer_phone, customer_mobile, receipt_unissued);		
 		startActivity(intent);
     }
     
-    public void callCashPay() {		//»óÇ°¸ñ·ÏÀÌ ¾øÀ»¶§, Çö±İ°áÁ¦Ã¢ È£Ãâ
-    	amount = "912";		//°ø±Ş°¡¾×
-    	tax = "92";					//ºÎ°¡¼¼
-    	fee = "0";					//ºÀ»ç·á
+    public void callCashPay() {		//ìƒí’ˆëª©ë¡ì´ ì—†ì„ë•Œ, í˜„ê¸ˆê²°ì œì°½ í˜¸ì¶œ
+    	amount = "912";		//ê³µê¸‰ê°€ì•¡
+    	tax = "92";					//ë¶€ê°€ì„¸
+    	fee = "0";					//ë´‰ì‚¬ë£Œ
     	
-    	///¿É¼Ç ÇÊµå (¿É¼ÇÀ¸·Î Ãß°¡ÇÒ ¼ö ÀÖ½À´Ï´Ù)
-    	comment = "ÃÊÄÚ¿ìÀ¯";		//»óÇ°¼³¸í(20ÀÚ ÀÌ³»)
-    	additional_data = "¹è¼Û ³ëÆ®=°æºñ½Ç¿¡ ¸Ã°ÜÁÖ¼¼¿ä";		//»óÁ¡°ü¸®¿ë ºÎ°¡µ¥ÀÌÅÍ (4096¹ÙÀÌÆ®)
-    	customer_name = "±èÈÄÆÛ";		//°í°´¸í
-    	customer_email = "help@whoopersoft.com";		//°í°´ ÀÌ¸ŞÀÏ
-    	customer_phone = "0248864885";		//°í°´ À¯¼± ÀüÈ­¹øÈ£
-    	customer_mobile = "01088880917";		//°í°´ ¹«¼± ÀüÈ­¹øÈ£
+    	///ì˜µì…˜ í•„ë“œ (ì˜µì…˜ìœ¼ë¡œ ì¶”ê°€í•  ìˆ˜ ìˆìŠµë‹ˆë‹¤)
+    	comment = "ì´ˆì½”ìš°ìœ ";		//ìƒí’ˆì„¤ëª…(20ì ì´ë‚´)
+    	additional_data = "ë°°ì†¡ ë…¸íŠ¸=ê²½ë¹„ì‹¤ì— ë§¡ê²¨ì£¼ì„¸ìš”";		//ìƒì ê´€ë¦¬ìš© ë¶€ê°€ë°ì´í„° (4096ë°”ì´íŠ¸)
+    	customer_name = "ê¹€í›„í¼";		//ê³ ê°ëª…
+    	customer_email = "help@whoopersoft.com";		//ê³ ê° ì´ë©”ì¼
+    	customer_phone = "0248864885";		//ê³ ê° ìœ ì„  ì „í™”ë²ˆí˜¸
+    	customer_mobile = "01088880917";		//ê³ ê° ë¬´ì„  ì „í™”ë²ˆí˜¸
+    	receipt_unissued = true;		//í˜ì´ì•³ ì˜ìˆ˜ì¦ ë°œí–‰ ì—¬ë¶€
 		
-		//Çö±İ°áÁ¦½Ã ÀÎÅÙÆ® ¸®ÅÏ (Å¬¶óÀÌ¾ğÆ® ¾ÆÀÌµğ, Å¬¶óÀÌ¾ğÆ® ½ÃÅ©¸´, °¡¸ÍÁ¡ ¾ÆÀÌµğ, °áÁ¦ Á÷¿ø ¾ÆÀÌµğ, °ø±Ş°¡¾×, ºÎ°¡¼¼, ºÀ»ç·á, »óÇ°¼³¸í,
-        //								   »óÁ¡°ü¸®¿ë ºÎ°¡µ¥ÀÌÅÍ (4096¹ÙÀÌÆ®), °í°´¸í, °í°´ ÀÌ¸ŞÀÏ, °í°´ À¯¼± ÀüÈ­¹øÈ£, °í°´ ¹«¼± ÀüÈ­¹øÈ£)
+		//í˜„ê¸ˆê²°ì œì‹œ ì¸í…íŠ¸ ë¦¬í„´ (í´ë¼ì´ì–¸íŠ¸ ì•„ì´ë””, í´ë¼ì´ì–¸íŠ¸ ì‹œí¬ë¦¿, ê°€ë§¹ì  ì•„ì´ë””, ê²°ì œ ì§ì› ì•„ì´ë””, ê³µê¸‰ê°€ì•¡, ë¶€ê°€ì„¸, ë´‰ì‚¬ë£Œ, ìƒí’ˆì„¤ëª…,
+        //								   ìƒì ê´€ë¦¬ìš© ë¶€ê°€ë°ì´í„° (4096ë°”ì´íŠ¸), ê³ ê°ëª…, ê³ ê° ì´ë©”ì¼, ê³ ê° ìœ ì„  ì „í™”ë²ˆí˜¸, ê³ ê° ë¬´ì„  ì „í™”ë²ˆí˜¸)
     	Intent intent = payatService.setCashPay(client_id, client_secret, store_screen_name, employee_screen_name, amount, tax, fee, comment,
-    															  additional_data, customer_name, customer_email, customer_phone, customer_mobile);	
+    															  additional_data, customer_name, customer_email, customer_phone, customer_mobile, receipt_unissued);	
 		startActivity(intent);
     }
     
     public void checkCallable() {
-    	callable = payatService.checkIntentCallable(this.getBaseContext());			//ÆäÀÌ¾Ü È£Ãâ °¡´É ¿©ºÎ ¸®ÅÏ(°¡´É true, ºÒ°¡ false)
+    	callable = payatService.checkIntentCallable(this.getBaseContext());			//í˜ì´ì•³ í˜¸ì¶œ ê°€ëŠ¥ ì—¬ë¶€ ë¦¬í„´(ê°€ëŠ¥ true, ë¶ˆê°€ false)
     	
     	if (callable){
-    		txt_callable.setText("ÆäÀÌ¾Ü È£Ãâ °¡´É");
+    		txt_callable.setText("í˜ì´ì•³ í˜¸ì¶œ ê°€ëŠ¥");
     		btn_card_payment.setEnabled(true);
     		btn_cash_payment.setEnabled(true);
     	}
     	else{
-    		txt_callable.setText("ÆäÀÌ¾ÜÀ» ºÒ·¯¿Ã ¼ö ¾ø½À´Ï´Ù.");
+    		txt_callable.setText("í˜ì´ì•³ì„ ë¶ˆëŸ¬ì˜¬ ìˆ˜ ì—†ìŠµë‹ˆë‹¤.");
     		btn_card_payment.setEnabled(false);
     		btn_cash_payment.setEnabled(false);
     	}
